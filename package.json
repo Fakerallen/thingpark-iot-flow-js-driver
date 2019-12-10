@@ -6,10 +6,13 @@
   "copyright": "© 2019 Actility",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git@git.int.actility.com:Thingpark-X/iot-flow-js-sdk.git"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
