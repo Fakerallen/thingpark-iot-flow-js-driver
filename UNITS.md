@@ -19,6 +19,7 @@
 | DECIBEL                    | dB        | double | dB         |
 | DECIBEL_MILLIWATT          | dBm       | double | dBm        |
 | DECIBEL_WATT               | dBW       | double | dBW        |
+| DEGREE                     | deg       | double | &#176;     |
 | DEGREES_PER_SECOD          | dps       | double | dps        |
 | DILUTION_OF_PRESION        | dop       | double | dop        |
 | EURO                       | euro      | double | &#8364;    |
@@ -36,6 +37,7 @@
 | KATAL                      | kat       | double | kat        |
 | KELVIN                     | K         | double | K          |
 | KILOGRAM                   | kg        | double | kg         |
+| KILOMETER                  | km        | double | km         |
 | KILOMETER_PER_HOUR         | km/h      | double | km/h       |
 | KILOPASCAL                 | kPa       | double | kPa        |
 | KILOWATT                   | kW        | double | kW         |
@@ -51,6 +53,9 @@
 | METER_PER_SECOND           | m/s       | double | m/s        |
 | METER_PER_SQUARSECOND      | m/s2      | double | m/s&#178;  |
 | MICROGRAM                  | ug        | double | &#181;g    |
+| MICROMETER                 | um        | double | &#181;m    |
+| MICROMOLE_PER_SEC_SQR_METER| umol/m2.s | double | &#181;mol/m&#178;.s |
+| MICROSIEMENS_PER_CENTIMETER| uS/cm     | double | &#181;S/cm |
 | MICROVOLT                  | uV        | double | uV         |
 | MILLIAMPERE                | mA        | double | mA         |
 | MILLIBAR                   | mbar      | double | mbar       |
@@ -58,6 +63,7 @@
 | MILLIMETER                 | mm        | double | mm         |
 | MILLIMETER_PER_SECOND      | mm/s      | double | mm/s       |
 | MILLIMETER_PER_HOUR        | mm/h      | double | mm/h       |
+| MILLISIEMENS_PER_CENTIMETER| mS/cm     | double | mS/cm      |
 | MILLIVOLT                  | mV        | double | mV         |
 | MOL                        | mol       | double | mol        |
 | NEWTON                     | N         | double | N          |
@@ -90,3 +96,9 @@
 | WATT_PER_SQUARE_METER      | W/m2      | double | W/m&#178;  |
 | WATTHOUR                   | Wh        | double | Wh         |
 | WEBER                      | Wb        | double | Wb         |
+
+
+
+
+
+
