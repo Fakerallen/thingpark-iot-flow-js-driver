@@ -153,6 +153,7 @@ The `input` is an object provided by the IoT Flow framework that is represented 
 ```
 {
     "bytes": {
+        "description": "the uplink payload byte array",
         "type": array,
         "items": {
             "type": "number"
@@ -160,8 +161,15 @@ The `input` is an object provided by the IoT Flow framework that is represented 
         "required": true
     },
     "fPort": {
+        "description": "the uplink payload fPort",
         "type": "number",
         "required": false
+    },
+    "time": {
+        "description": "the datetime of the uplink message, it is a real javascript Date object",
+        "type": "string",
+        "format": "date-time",
+        "required": true
     }
 }
 ```
@@ -229,7 +237,23 @@ Points can be extracted once an uplink has been decoded. In order to extract poi
 function extractPoints(input) {...}
 ```
 
-where the input is an object as returned by the `decodeUplink(input)` function.
+The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
+
+```
+{
+    "message": {
+        "description": "the object message as returned by the decodeUplink function",
+        "type": "object",
+        "required": true
+    },
+    "time": {
+        "description": "the datetime of the uplink message, it is a real javascript Date object",
+        "type": "string",
+        "format": "date-time",
+        "required": true
+    }
+}
+```
 
 The returned object is defined by the following json-schema:
 
