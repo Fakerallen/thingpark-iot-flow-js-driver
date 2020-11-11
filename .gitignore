@@ -67,3 +67,5 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
+main.js
+*.tgz
