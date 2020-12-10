@@ -1,100 +1,102 @@
-| Unit                        | unitId    | type   | symbol              |
-| --------------------------- | --------- | ------ | ------------------- |
-| AMPERE                      | A         | double | A                   |
-| BAR                         | bar       | double | bar                 |
-| BECQUEREL                   | Bq        | double | Bq                  |
-| BEL                         | Bspl      | double | bel                 |
-| BIT                         | bit       | double | bit                 |
-| BIT_PER_SECOND              | bit/s     | double | bit/s               |
-| CANDELA                     | cd        | double | cd                  |
-| CANDELA_PER_SQUE_METER      | cd/m2     | double | cd/m&#178;          |
-| CELSIUS                     | Cel       | double | "&#176;C            |
-| CENTIMETER                  | cm        | double | cm                  |
-| COULOMB                     | C         | double | C                   |
-| COUNT_PER_SECOND            | count/s   | double | count/s             |
-| COUNT_PER_MINUTE            | count/min | double | count/min           |
-| CUBIC_METER                 | m3        | double | m&#179;             |
-| CUBIC_METER_PER_HOUR        | m3/h      | double | m&#179;/h           |
-| CUBIC_METER_PER_SECOND      | m3/s      | double | m&#179;/s           |
-| DECIBEL                     | dB        | double | dB                  |
-| DECIBEL_MILLIWATT           | dBm       | double | dBm                 |
-| DECIBEL_WATT                | dBW       | double | dBW                 |
-| DEGREE                      | deg       | double | &#176;              |
-| DEGREES_PER_SECOD           | dps       | double | dps                 |
-| DILUTION_OF_PRESION         | dop       | double | dop                 |
-| EURO                        | euro      | double | &#8364;             |
-| EURO_PER_WATTHOUR           | euro/Wh   | double | &#8364;/Wh          |
-| FAHRENHEIT                  | Far       | double | &#176;F             |
-| FARAD                       | F         | double | F                   |
-| GIGAWATT                    | GW        | double | GW                  |
-| GRAM                        | g         | double | g                   |
-| GRAVITY                     | gravity   | double | G                   |
-| GRAY                        | Gy        | double | Gy                  |
-| HECTOPASCAL                 | hPa       | double | hPa                 |
-| HENRY                       | H         | double | H                   |
-| HERTZ                       | hertz     | double | Hz                  |
-| JOULE                       | J         | double | J                   |
-| KATAL                       | kat       | double | kat                 |
-| KELVIN                      | K         | double | K                   |
-| KILOGRAM                    | kg        | double | kg                  |
-| KILOMETER                   | km        | double | km                  |
-| KILOMETER_PER_HOUR          | km/h      | double | km/h                |
-| KILOPASCAL                  | kPa       | double | kPa                 |
-| KILOWATT                    | kW        | double | kW                  |
-| KILOWATTHOUR                | kWh       | double | kWh                 |
-| LITER                       | l         | double | l                   |
-| LITER_PER_SECON             | l/s       | double | l/s                 |
-| LUMEN                       | lm        | double | lm                  |
-| LUX                         | lx        | double | lx                  |
-| MEGAWATT                    | MW        | double | MW                  |
-| MEGAWATTHOUR                | MWh       | double | MWh                 |
-| MEGAWATT_PER_MINUTE         | MW/m      | double | MW/m                |
-| METER                       | m         | double | m                   |
-| METER_PER_SECOND            | m/s       | double | m/s                 |
-| METER_PER_SQUARSECOND       | m/s2      | double | m/s&#178;           |
-| MICROGRAM                   | ug        | double | &#181;g             |
-| MICROGRAM_PER_CUBIC_METER   | ug/m3     | double | &#181;g/m&#179;     |
-| MICROMETER                  | um        | double | &#181;m             |
-| MICROMOLE_PER_SEC_SQR_METER | umol/m2.s | double | &#181;mol/m&#178;.s |
-| MICROSIEMENS_PER_CENTIMETER | uS/cm     | double | &#181;S/cm          |
-| MICROVOLT                   | uV        | double | uV                  |
-| MILLIAMPERE                 | mA        | double | mA                  |
-| MILLIBAR                    | mbar      | double | mbar                |
-| MILLILITER                  | ml        | double | ml                  |
-| MILLIMETER                  | mm        | double | mm                  |
-| MILLIMETER_PER_SECOND       | mm/s      | double | mm/s                |
-| MILLIMETER_PER_HOUR         | mm/h      | double | mm/h                |
-| MILLISIEMENS_PER_CENTIMETER | mS/cm     | double | mS/cm               |
-| MILLIVOLT                   | mV        | double | mV                  |
-| MOL                         | mol       | double | mol                 |
-| NEWTON                      | N         | double | N                   |
-| NEPHELOMETRIC_TURBIDITY     | ntu       | double | ntu                 |
-| OKTA                        | okta      | INT64  | okta                |
-| OHM                         | Ohm       | double | &#8486;             |
-| PARTS_PER_BILLI             | ppb       | double | ppb                 |
-| PARTS_PER_MILLI             | ppm       | double | ppm                 |
-| PASCAL                      | Pa        | double | Pa                  |
-| PERCENTAGE                  | %         | double | %                   |
-| PERCENTAGE_RELAVE_HUMIDITY  | %RH       | double | %RH                 |
-| PH                          | pH        | double | pH                  |
-| RADIAN                      | rad       | double | rad                 |
-| RATE                        | /         | double | rratead             |
-| ROTATIONS_PER_MINUTE        | rpm       | double | rpm                 |
-| SECOND                      | s         | double | s                   |
-| SIEMENS                     | S         | double | S                   |
-| SIEMENS_PER_METER           | S/m       | double | S/m                 |
-| SIEVERT                     | Sv        | double | Sv                  |
-| SQUARE_METER                | m2        | double | m&#178;             |
-| STERADIAN                   | sr        | double | sr                  |
-| TESLA                       | T         | double | T                   |
-| VA                          | VA        | double | VA                  |
-| VA_HOUR                     | VAh       | double | VAh                 |
-| VAR                         | var       | double | var                 |
-| VAR_HOUR                    | varh      | double | varh                |
-| VOLT                        | V         | double | V                   |
-| WATT                        | W         | double | W                   |
-| WATT_PER_HOUR               | W/h       | double | W/h                 |
-| WATT_PER_SECOND             | W/s       | double | W/s                 |
-| WATT_PER_SQUARE_METER       | W/m2      | double | W/m&#178;           |
-| WATTHOUR                    | Wh        | double | Wh                  |
-| WEBER                       | Wb        | double | Wb                  |
+| Unit                                  | unitId    | type   | symbol              |
+| ------------------------------------- | --------- | ------ | ------------------- |
+| Ampere                                | A         | double | A                   |
+| Bar                                   | bar       | double | bar                 |
+| Becquerel                             | Bq        | double | Bq                  |
+| Bel                                   | Bspl      | double | bel                 |
+| Bit                                   | bit       | double | bit                 |
+| Bit per second                        | bit/s     | double | bit/s               |
+| Candela                               | cd        | double | cd                  |
+| Candela per square meter              | cd/m2     | double | cd/m&#178;          |
+| Celsius                               | Cel       | double | "&#176;C            |
+| Centimeter                            | cm        | double | cm                  |
+| Coulomb                               | C         | double | C                   |
+| Count per second                      | count/s   | double | count/s             |
+| Count per minute                      | count/min | double | count/min           |
+| Cubic meter                           | m3        | double | m&#179;             |
+| Cubic meter per hour                  | m3/h      | double | m&#179;/h           |
+| Cubic meter per second                | m3/s      | double | m&#179;/s           |
+| Decibel                               | dB        | double | dB                  |
+| Decibel relative to 1mW               | dBm       | double | dBm                 |
+| Decibel relative to 1W                | dBW       | double | dBW                 |
+| Degree                                | deg       | double | &#176;              |
+| Degrees per second                    | dps       | double | dps                 |
+| Dillution of precision                | dop       | double | dop                 |
+| Euro                                  | euro      | double | &#8364;             |
+| Euro per watthour                     | euro/Wh   | double | &#8364;/Wh          |
+| Fahrenheit                            | Far       | double | &#176;F             |
+| Farad                                 | F         | double | F                   |
+| Gigawatt                              | GW        | double | GW                  |
+| Gram                                  | g         | double | g                   |
+| Gravity                               | gravity   | double | G                   |
+| Gray                                  | Gy        | double | Gy                  |
+| Hectopascal                           | hPa       | double | hPa                 |
+| Henry                                 | H         | double | H                   |
+| Hertz                                 | hertz     | double | Hz                  |
+| Joule                                 | J         | double | J                   |
+| Katal                                 | kat       | double | kat                 |
+| Kelvin                                | K         | double | K                   |
+| Kilogram                              | kg        | double | kg                  |
+| Kilometer                             | km        | double | km                  |
+| Kilometer per hour                    | km/h      | double | km/h                |
+| Kilopascal                            | kPa       | double | kPa                 |
+| Kilowatt                              | kW        | double | kW                  |
+| Kilowatthour                          | kWh       | double | kWh                 |
+| Liter                                 | l         | double | l                   |
+| Liter per second                      | l/s       | double | l/s                 |
+| Lumen                                 | lm        | double | lm                  |
+| Lux                                   | lx        | double | lx                  |
+| Megawatt                              | MW        | double | MW                  |
+| Megawatthour                          | MWh       | double | MWh                 |
+| Megawatt per minute                   | MW/m      | double | MW/m                |
+| Meter                                 | m         | double | m                   |
+| Meter per second                      | m/s       | double | m/s                 |
+| Meter per square second               | m/s2      | double | m/s&#178;           |
+| Microgram                             | ug        | double | &#181;g             |
+| Microgram per cubic meter             | ug/m3     | double | &#181;g/m&#179;     |
+| Micrometer                            | um        | double | &#181;m             |
+| Micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s |
+| Microsiemens per centimeter           | uS/cm     | double | &#181;S/cm          |
+| Microvolt                             | uV        | double | uV                  |
+| Milliampere                           | mA        | double | mA                  |
+| Millibar                              | mbar      | double | mbar                |
+| Milliliter                            | ml        | double | ml                  |
+| Millimeter                            | mm        | double | mm                  |
+| Millimeter per second                 | mm/s      | double | mm/s                |
+| Millimeter per hour                   | mm/h      | double | mm/h                |
+| Millisecond                           | ms        | double | ms                  |
+| Millisiemens per centimeter           | mS/cm     | double | mS/cm               |
+| Millivolt                             | mV        | double | mV                  |
+| Mole                                  | mol       | double | mol                 |
+| Newton                                | N         | double | N                   |
+| Nephelometric turbidity               | ntu       | double | ntu                 |
+| Okta                                  | okta      | int64  | okta                |
+| Ohm                                   | Ohm       | double | &#8486;             |
+| Parts per billion                     | ppb       | double | ppb                 |
+| Parts per million                     | ppm       | double | ppm                 |
+| Pascal                                | Pa        | double | Pa                  |
+| Percentage                            | %         | double | %                   |
+| Percentage relative humidity          | %RH       | double | %RH                 |
+| pH                                    | pH        | double | pH                  |
+| Pulse per hour                        | pulse/h   | double | pulse/h             |
+| Radian                                | rad       | double | rad                 |
+| Rate                                  | /         | double | rate                |
+| Rotations per minute                  | rpm       | double | rpm                 |
+| Second                                | s         | double | s                   |
+| Siemens                               | S         | double | S                   |
+| Siemens per meter                     | S/m       | double | S/m                 |
+| Sievert                               | Sv        | double | Sv                  |
+| Square meter                          | m2        | double | m&#178;             |
+| Steradian                             | sr        | double | sr                  |
+| Tesla                                 | T         | double | T                   |
+| Volt-Ampere                           | VA        | double | VA                  |
+| Volt-Ampere hour                      | VAh       | double | VAh                 |
+| Volt-Ampere reactive                  | var       | double | var                 |
+| Volt-Ampere reactive hour             | varh      | double | varh                |
+| Volt                                  | V         | double | V                   |
+| Watt                                  | W         | double | W                   |
+| Watt per hour                         | W/h       | double | W/h                 |
+| Watt per second                       | W/s       | double | W/s                 |
+| Watt per square meter                 | W/m2      | double | W/m&#178;           |
+| Watthour                              | Wh        | double | Wh                  |
+| Weber                                 | Wb        | double | Wb                  |

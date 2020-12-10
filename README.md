@@ -28,8 +28,11 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
 
 ### Driver
 
-The `driver` is the piece of code responsible to decode uplinks/downlinks and to encode downlinks for a device
-applicative stack. It is the core part of the IoT Flow framework to interact with new devices.
+The `driver` is the piece of code responsible to decode uplinks/downlinks and to encode downlinks for a single device
+communication protocol. It is the core part of the IoT Flow framework to interact with new devices.
+
+If a device is exposing several incompatible communication protocols, then several drivers needs to be implemented,
+one for each.
 
 ### Thing
 
@@ -52,10 +55,57 @@ represents the position of the device at the provided `eventTime`
 
 ### Application
 
-The `application` identifies an applicative stack implemented by a device. It is composed of 3 information:
-* who specifies this applicative stack, could be either a manufacturer or an entity defining a public standard (`producerId`)
-* the applicative stack name (`moduleId`)
-* the applicative stack version (`version`)
+The `application` identifies a communication protocol exposed by a device. It is composed of 3 information:
+* `producerId`: who specifies this communication protocol, could be either a manufacturer or an entity defining a
+   public standard. **This value must be agreed with Actility**
+* `moduleId`: an identifier for the communication protocol name. This value is decided by the manufacturer or the
+   entity providing the public standard.
+* `version`: the communication protocol version. This value is decided by the manufacturer or the entity providing
+   the public standard. It must only identifies the major version of the protocol
+
+This information is important for ThingPark X IoT Flow framework as it allows to identify the protocol exposed by
+a device especially when several are possible for a single one.
+
+Here are some examples explaining how the `application` works (we assume we are the acme company providing a fictive
+humidity sensor):
+
+#### Example 1
+Our humidity sensor is exposing a proprietary communication protocol with any firmware strictly lower than v3. Starting
+from v3 the device is now exposing a standard ZCL (ZigBee Cluster Library) payload.
+
+In this case the `application` for pre v3 firmware devices would be:
+* `producerId`: `acme` (decided with Actility)
+* `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
+* `version`: `1` (major version of the acme generic protocol)
+
+For post v3 firmware devices the protocol would be:
+* `producerId`: `zba` (decided with Actility to identify the ZigBee Alliance)
+* `moduleId`: `zcl` (name of the protocol in the ZigBee Alliance)
+* `version`: `1` (major ZCL version)
+
+#### Example 2
+Our humidity sensor is exposing a proprietary communication protocol with any firmware strictly lower than v4. Starting
+from v4 the device is now exposing a new incompatible proprietary communication protocol. It means the new
+payload cannot be decoded by the same `driver` even using the payload length or the LoRaWAN context like the `fPort` or
+the future `profileID`.
+
+A possible example for this would be:
+* the pre v4 uplink payload is a single byte with an integer value from 0 to 100 representing the humidity in %RH
+* the post v4 uplink payload is a single byte with an integer value from 0 to 254 representing the humidity in %RH
+  (from 0 to 100). Therefore, to get the %RH the read value must be multiplied by 100 and divided by 254.
+
+In this example, there is no possible way to know in which case we are when receiving the uplink even looking at the
+payload length or the LoRaWAN context. Therefore, we need to declare two `application` and by construction two `driver`.
+
+So for this example, the `application` for pre v4 firmware devices would be:
+* `producerId`: `acme` (decided with Actility)
+* `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
+* `version`: `1` (major version of the acme generic protocol)
+
+For post v4 firmware devices the protocol would be:
+* `producerId`: `acme` (decided with Actility)
+* `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
+* `version`: `2` (major version of the acme generic protocol)
 
 ### Uplink
 
@@ -68,7 +118,7 @@ A packet sent from the cloud to the `thing`
 ## API
 
 A driver is composed of 2 parts:
-* a static descriptive definition that describes the driver
+* a static configuration defining the `driver` metadata
 * a javascript code made of four possible functions to perform the encoding and decoding tasks
 
 ### Driver definition
@@ -76,7 +126,7 @@ A driver is composed of 2 parts:
 The driver definition must be declared in the driver's NPM's `package.json`.
 
 This is the first condition for a driver to be valid: being an NPM package that includes a `driver` object in its
-`package.json` which declares it least a `producerId`, a `type` and an `application`.
+`package.json` which must declare at least a `producerId`, a `type` and an `application`.
 
 Here is an example of a `driver` definition:
 
@@ -84,7 +134,7 @@ Here is an example of a `driver` definition:
 {
   "name": "example-driver",
   "version": "1.0.0",
-  "description": "",
+  "description": "My example driver",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -117,16 +167,38 @@ Here is an example of a `driver` definition:
 }
 ```
 
-In this example, we declare a driver produced by `actility` which can treat payloads from an example `application`
-specified by `myProducer` and whose name is `myModule` and version is `1`.
+Here we declare a `driver.producerId` equal to `actility`. It means the `driver` is developed by Actility and it
+implements a communication protocol (`driver.application`) coming from a fictive `myManufacturer`. Most of the time,
+the `driver` developer is also the manufacturer and therefore `driver.producerId` and `driver.application.producerId`
+are the same. Like in the `application` the `driver.producerId` must be agreed with Actility.
 
-This driver is of type `thingpark-x-js` and this must be declared and shall not be set to another value.
+We also declare a `driver.type` equal to `thingpark-x-js`. This allows the ThingPark X IoT Flow framework to know what
+kind of driver it is as it supports several formats. In this documentation we only describe the `thingpark-x-js`
+format therefore the `driver.type` must be set to this value.
 
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 
-`producerId` and `application` are _mandatory_ for Thingpark X IoT Flow framework to select the correct driver.
-The `points` section is _mandatory_ only when using the `extractPoints(input)` function (see [here](#point-extraction)
-for a complete description). It describes a "contract" of points that can be extracted with the driver.
+The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
+for a complete description). It describes a "contract" of points that can be extracted with the `driver`. Each point can
+declare two properties:
+
+* `type`: this is a **mandatory** property representing the point type. Possible values are:
+  * `string`
+  * `int64`
+  * `double`
+  * `boolean`
+* `unitId`: this is an optional value that represents the point unit in case its `type` is `double` or `int64`. The
+  list of possible units are defined [here](UNITS.md). If a `unitId` is missing, you can raise an issue to integrate it.
+
+Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
+* `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
+  `@actility/example-driver`, the scope will be removed when building it.
+* `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
+   modifying its `driver`
+* `description`: will be used as a short friendly name for the `driver`
+
+In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
+`{driver.producerId}:{name-without-scope}:{major-version}`
 
 ### Driver functions
 
