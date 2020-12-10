@@ -188,7 +188,8 @@ declare two properties:
   * `double`
   * `boolean`
 * `unitId`: this is an optional value that represents the point unit in case its `type` is `double` or `int64`. The
-  list of possible units are defined [here](UNITS.md). If a `unitId` is missing, you can raise an issue to integrate it.
+  list of possible units are defined [here](UNITS.md). If a `unitId` is missing, you can raise an issue in this project
+  to integrate it.
 
 Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
 * `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
