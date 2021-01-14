@@ -426,3 +426,12 @@ To execute tests, you must use the following command:
 ```shell
 npm test
 ```
+### Test coverage
+
+To get the coverage of your tests, you must use the following command:
+
+```shell
+npm test --collectCoverage
+```
+
+This command will give a full report about the coverage of your tests. The most important value in this report is the percentage of the statements coverage which appears under `stmts`.
