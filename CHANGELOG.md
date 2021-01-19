@@ -6,6 +6,8 @@ N/A
 
 ### Features
 
+Add description in drivers
+
 Expose examples of payloads on driver API
 
 Add string length constraints in driver readme

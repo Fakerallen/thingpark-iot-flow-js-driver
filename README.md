@@ -143,12 +143,21 @@ Here is an example of a `driver` definition:
 
 ```json
 {
-    "name": "example-driver",
-    "version": "1.0.0",
-    "description": "My example driver",
-    "main": "index.js",
-    "scripts": {
-        "test": "jest --collectCoverage"
+  "name": "example-driver",
+  "version": "1.0.0",
+  "description": "My example driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
+    "producerId": "actility",
+    "type": "thingpark-x-js",
+    "application": {
+      "producerId": "myProducer",
+      "moduleId": "myModule",
+      "version": "1"
     },
     "driver": {
         "producerId": "actility",
@@ -187,6 +196,8 @@ We also declare a `driver.type` equal to `thingpark-x-js`. This allows the Thing
 kind of driver it is as it supports several formats. In this documentation we only describe the `thingpark-x-js`
 format therefore the `driver.type` must be set to this value.
 
+In addition, we declare `driver.description` equal to `An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter`. This allows the user to see a brief description of the driver. Be careful, this driver description differs from the NPM property `description` (which is described below), this one provides a full description and can be longer than the short friendly name of the driver.
+
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 
 The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
@@ -208,19 +219,20 @@ Some regular NPM properties in `package.json` are also leveraged by ThingPark X 
     `@actility/example-driver`, the scope will be removed when building it.
 -   `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
     modifying its `driver`
--   `description`: will be used as a short friendly name for the `driver`
+-   `description`: will be used as a short friendly name for the `driver`. It should not be very long.
 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
 `{driver.producerId}:{name-without-scope}:{major-version}`
 
-**Important:**  	There is some limitations on the length of fields in `package.json`:
- - `name` must be a string of maximum 16 characters.
- - `producerId` must be a string of maximum 8 characters.
- - `moduleId` must be a string of maximum 16 characters.
- - `driver.producerId` must be a string of maximum 8 characters.
- - `driver.application.producerId` must be a string of maximum 8 characters.
- - `driver.application.moduleId` must be a string of maximum 16 characters.
- 
+**Important:** There is some limitations on the length of fields in `package.json`:
+
+-   `name` must be a string of maximum 16 characters.
+-   `producerId` must be a string of maximum 8 characters.
+-   `moduleId` must be a string of maximum 16 characters.
+-   `driver.producerId` must be a string of maximum 8 characters.
+-   `driver.application.producerId` must be a string of maximum 8 characters.
+-   `driver.application.moduleId` must be a string of maximum 16 characters.
+
 ### Driver functions
 
 The following sections describe the four javascript functions that a driver can declare to perform encoding and decoding

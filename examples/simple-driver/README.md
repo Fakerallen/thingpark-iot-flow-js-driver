@@ -58,6 +58,7 @@ Add the `driver` object (see [here](#driver-definition)) to the `package.json` f
     "author": "",
     "license": "ISC",
     "driver": {
+        "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
         "producerId": "my-driver-producer",
         "type": "thingpark-x-js",
         "application": {
@@ -235,6 +236,7 @@ So lets add both `temperature` and `pulseCounter` points to our package (inside 
     "author": "",
     "license": "ISC",
     "driver": {
+        "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
         "producerId": "my-driver-producer",
         "type": "thingpark-x-js",
         "application": {
