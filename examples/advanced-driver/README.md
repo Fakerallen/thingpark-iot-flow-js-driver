@@ -47,7 +47,7 @@ You now have an advanced driver composed of 2 files `index.js` and `util.js`.
 As explained in the introduction, we will now use `webpack` tool to bundle the code in a standalone source file. For this, ensure you have
 `webpack` command installed. You need to use at least `4.43.0` version. You can check its version with:
 
-```
+```shell
 webpack --version
 ```
 
@@ -57,13 +57,13 @@ Now create a file named `webpack.config.js` at the project root with content:
 const path = require("path");
 
 module.exports = {
-  mode: "production",
-  entry: "./index.js",
-  output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "."),
-    library: "driver",
-  },
+    mode: "production",
+    entry: "./index.js",
+    output: {
+        filename: "main.js",
+        path: path.resolve(__dirname, "."),
+        library: "driver",
+    },
 };
 ```
 
@@ -75,7 +75,7 @@ ThingPark X IoT Flow Framework.
 
 After that you can generate the bundled code using the command:
 
-```
+```shell
 webpack
 ```
 
@@ -95,7 +95,7 @@ npm install --save-dev webpack webpack-cli
 To automatically produce the bundled code while compiling the project using `npm run build`, you have to modify the
 `build` sub-command. For this, in `package.json` in `scripts` section add the new build definition like this:
 
-```
+```json
   ...
   "scripts": {
     "build": "webpack",
@@ -112,7 +112,7 @@ To build a valid driver for ThingPark X IoT Flow framework, you need to update t
 to use the bundled code. For this, edit the `package.json` and change the value of the property named `main` to `main.js`
 like this:
 
-```
+```json
   ...
   "main": "main.js",
   ...
@@ -122,7 +122,7 @@ As you have seen, the bundled code produced by `webpack` is not really readable 
 IoT Flow framework from exposing this code to the end user you need to add the `private` property in `driver` section of
 the `package.json` like this:
 
-```
+```json
   ...
   "driver": {
     "private": true,
@@ -133,7 +133,7 @@ the `package.json` like this:
 
 From there, you can produce your driver using the usual command to build the package:
 
-```
+```shell
 npm pack
 ```
 

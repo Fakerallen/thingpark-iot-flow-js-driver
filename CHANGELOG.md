@@ -6,6 +6,8 @@ N/A
 
 ### Features
 
+Expose examples of payloads on driver API
+
 Add string length constraints in driver readme
 
 ### Bugfixes
@@ -39,4 +41,3 @@ Added examples and README
 ### Bugfixes
 
 N/A
-
