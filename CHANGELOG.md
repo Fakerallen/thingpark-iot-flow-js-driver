@@ -1,3 +1,17 @@
+## 0.3.0
+
+### Breaking change
+
+N/A
+
+### Features
+
+Add string length constraints in driver readme
+
+### Bugfixes
+
+N/A
+
 ## 0.2.0
 
 ### Breaking change

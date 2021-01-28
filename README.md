@@ -1,4 +1,4 @@
-# IoT Flow JavaScript driver developer guide
+﻿# IoT Flow JavaScript driver developer guide
 
 This project describes how to build a javascript driver for the ThingPark X IoT Flow framework.
 
@@ -201,6 +201,14 @@ Some regular NPM properties in `package.json` are also leveraged by ThingPark X 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
 `{driver.producerId}:{name-without-scope}:{major-version}`
 
+**Important:**  	There is some limitations on the length of fields in `package.json`:
+ - `name` must be a string of maximum 16 characters.
+ - `producerId` must be a string of maximum 8 characters.
+ - `moduleId` must be a string of maximum 16 characters.
+ - `driver.producerId` must be a string of maximum 8 characters.
+ - `driver.application.producerId` must be a string of maximum 8 characters.
+ - `driver.application.moduleId` must be a string of maximum 16 characters.
+ 
 ### Driver functions
 
 The following sections describe the four javascript functions that a driver can declare to perform encoding and decoding
