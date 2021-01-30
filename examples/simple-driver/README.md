@@ -1,15 +1,15 @@
-# Simple driver guide
+﻿# Simple driver guide
 
 This example describes how you to create a simple driver using ThingPark X IoT Flow framework.
 
 The concepts and API is describe [here](../../README.md)
 
-* [Simple driver](#simple-driver-guide)
-  * [Minimal driver](#minimal-driver)
-  * [Encoding and decoding downlinks](#encoding-and-decoding-downlinks)
-  * [Extracting points](#extracting-points)
-  * [Returning errors](#returning-errors)
-  * [Testing](#testing)
+-   [Simple driver](#simple-driver-guide)
+    -   [Minimal driver](#minimal-driver)
+    -   [Encoding and decoding downlinks](#encoding-and-decoding-downlinks)
+    -   [Extracting points](#extracting-points)
+    -   [Returning errors](#returning-errors)
+    -   [Testing](#testing)
 
 You can find the complete code [here](./example/index.js).
 
@@ -304,12 +304,7 @@ _Note: All throws that do not throw an `Error` object will be ignored by the IoT
 
 ## Testing
 
-Testing your driver is a very important process, thus the user is highly encouraged to test the driver in most possible
-use cases as well as error cases.
-
-You can find the full example tests [here](./example/test/driver.spec.js).
-
-We provide a full test of our example driver [here](./example/test/driver.spec.js). We used [Jest](https://jestjs.io/) as our testing framweork.
+We use [Jest](https://jestjs.io/) as our testing framweork.
 
 _Note: when testing, you will need to export the functions that you test (unless of course you copy / paste the functions into the testing file). This is *not* needed in your driver if not tested_
 
@@ -336,102 +331,139 @@ First, you need to add the `test` script in the `package.json`:
 
 ```json
   "scripts": {
-    "test": "jest"
+    "test": "jest --collectCoverage"
   }
 ```
 
 Then, you will be able to launch tests using command `npm test`
 
-### Create file
+### Create files
 
-You can create a folder named `test` and create a file inside named `driver.spec.ts`.
+You can use our files `driver-examples.spec.js` and `driver-errors.spec.js` provided in our driver example [here](./test) to test your payload examples and errors to be thrown.
+
+When using these two files, you don't have to make any change inside. Except respecting the folder names of `examples` and `errors` as explained below.
+
+You can create a folder named `test` and copy the test files inside.
 
 Note that `.spec.ts` extension shall be used for files containing unit test cases.
 
-### Import the code of the driver
-
-In order to use the functions defined in the driver, you must add the following code at the beggining of the file:
-
-```javascript
-var driver = require("../index");
-```
-
-### Always test that the functions you defined are in fact correctly defined
-
-```javascript
-describe("Decode uplink correct definition", () => {
-    it("should decode uplink function defined", () => {
-        // When / Then
-        expect(typeof driver.decodeUplink === "function").toBe(true);
-    });
-
-    it("should decode uplink function take exactly 1 parameter", () => {
-        // When / Then
-        expect(driver.decodeUplink.length).toBe(1);
-    });
-});
-```
-
-Although this might seem like a waste of time, a wrongly defined driver will not be loaded by the IoT Flow framework and therefore it will be useless.
-
 ### Test that the errors you should throw are actually thrown
 
-```javascript
-describe("Decode uplink correct definition", () => {
-    it("should fail decode uplink when payload exceeds 8 bytes", () => {
-        // Given
-        const bytes = [0x00, 0x0c, 0x44, 0x01, 0x0c, 0x44, 0x02, 0x0c, 0xaa];
-        const input = {};
-        input.bytes = bytes;
+In order to facilitate the errors testing process, we provide the file `driver-errors.spec.js`.
 
-        // When / Then
-        expect(() => driver.decodeUplink(input)).toThrow("Invalid uplink payload: length exceeds 8 bytes");
-    });
-});
+However, this file needs to have errors examples to run the tests automatically. This file will automatically get all your errors examples and test them using [Jest](https://jestjs.io/).
+
+#### Create errors examples
+
+These errors examples has a similar concept of the payloads examples.
+
+To benefit from the automation of the tests, you must create a directory in the driver package named `/errors`. Inside, the name of each error examples file must follow the pattern `*.errors.json`. You can split and organize the errors files according to your own logic.
+
+**Note:** These errors examples will be only used for unit tests and will not be stored in our framework.
+
+An `*.errors.json` file contains an array of several uplink/downlink errors examples.
+
+##### decodeUplink/decodeDownlink error example
+
+The error example used to test `decodeUplink`/`decodeDownlink` function is an object represented by the following json-schema:
+
+```json
+"description": {
+        "description": "the description of the error example",
+        "type": "string",
+        "required": true
+    },
+    "type": {
+        "description": "the type of the example",
+        "type": "string",
+        "enum":  ["uplink", "downlink"],
+        "required": true
+    },
+    "bytes": {
+        "description": "the uplink/downlink payload expressed in hexadecimal",
+        "type": "string",
+        "required": true
+    },
+    "fPort": {
+        "description": "the uplink/downlink message LoRaWAN fPort",
+        "type": "number",
+        "required": true
+    },
+    "time": {
+        "description": "the uplink/downlink message time",
+        "type": "string",
+        "format": "date-time",
+        "required": false
+    },
+    "error": {
+        "description": "the error that should be thrown in case of wrong input",
+        "type": "string",
+        "required": true
+    }
 ```
 
-In this case we provided a payload containing 9 bytes while our example driver will throw an error if the payload exceeds 8 bytes.
+##### encodeDownlink/extractPoints error example
 
-### Test at least one "correct" case
+The error example used to test `encodeDownlink`/`extractPoints` function is an object represented by the following json-schema:
 
-```javascript
-describe("Decode uplink correct definition", () => {
-    it("should decode uplink containing three measurements", () => {
-        // Given
-        const bytes = [0x00, 0x0c, 0x44, 0x01, 0x0c, 0x44, 0x02, 0x0c];
-        const input = {};
-        input.bytes = bytes;
-
-        const expected = {
-            temperature: 31.4,
-            humidity: 31.4,
-            pulseCounter: 12,
-        };
-
-        // When
-        const result = driver.decodeUplink(input);
-
-        // Then
-        expect(result).toStrictEqual(expected);
-    });
-});
+```json
+"description": {
+        "description": "the description of the error example",
+        "type": "string",
+        "required": true
+    },
+    "type": {
+        "description": "the type of the example",
+        "type": "string",
+        "enum":  ["uplink", "downlink"],
+        "required": true
+    },
+    "fPort": {
+        "description": "the uplink/downlink message LoRaWAN fPort",
+        "type": "number",
+        "required": true
+    },
+    "time": {
+        "description": "the uplink/downlink message time",
+        "type": "string",
+        "format": "date-time",
+        "required": false
+    },
+    "data": {
+        "description": "the decoded uplink/downlink view as an input to the function",
+        "type": "object",
+        "required": true
+    },
+    "error": {
+        "description": "the error that should be thrown in case of wrong input",
+        "type": "string",
+        "required": true
+    }
 ```
 
-In this case we test a full payload that is correctly decoded by our example driver.
+#
 
-### Execute tests
+**Important:** `description` field must be unique.
+
+
+### Test the correct cases of your driver
+
+In order to facilitate the use cases testing process, we provide the file `driver-examples.spec.js`.
+
+This file will automatically get all your examples that match the pattern `*.examples.json` inside the directory `/examples` and test them using [Jest](https://jestjs.io/).
+
+### Execute tests with coverage
 
 To execute tests, you must use the following command:
 
 ```shell
 npm test
 ```
-### Test coverage
-
-To get the coverage of your tests, you must use the following command:
-
-```shell
-npm test --collectCoverage
-```
 
 This command will give a full report about the coverage of your tests. The most important value in this report is the percentage of the statements coverage which appears under `stmts`.
+
+To execute a specific test, you can add the name of the test file in the command:
+
+```shell
+npm test driver-examples.spec.js
+```
