@@ -8,6 +8,7 @@
         "test": "jest"
     },
     "driver": {
+        "description": "An example of an advanced driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
         "producerId": "actility",
         "type": "thingpark-x-js",
         "application": {
@@ -15,23 +16,42 @@
             "moduleId": "myModule",
             "version": "1"
         },
-        "points": {
-            "temperature": {
-                "unitId": "Cel",
-                "type": "double"
+        "driver": {
+            "description": "myDriver description",
+            "producerId": "actility",
+            "type": "thingpark-x-js",
+            "application": {
+                "producerId": "myProducer",
+                "moduleId": "myModule",
+                "version": "1"
             },
-            "humidity": {
-                "unitId": "%RH",
-                "type": "double"
+            "driver": {
+                "producerId": "actility",
+                "type": "thingpark-x-js",
+                "application": {
+                    "producerId": "myProducer",
+                    "moduleId": "myModule",
+                    "version": "1"
+                },
+                "points": {
+                    "temperature": {
+                        "unitId": "Cel",
+                        "type": "double"
+                    },
+                    "humidity": {
+                        "unitId": "%RH",
+                        "type": "double"
+                    },
+                    "pulseCounter": {
+                        "type": "int64"
+                    }
+                }
             },
-            "pulseCounter": {
-                "type": "int64"
+            "devDependencies": {
+                "jest": "^25.4.0",
+                "webpack": "^5.4.0",
+                "webpack-cli": "^4.2.0"
             }
         }
-    },
-    "devDependencies": {
-        "jest": "^25.4.0",
-        "webpack": "^5.4.0",
-        "webpack-cli": "^4.2.0"
     }
 }
