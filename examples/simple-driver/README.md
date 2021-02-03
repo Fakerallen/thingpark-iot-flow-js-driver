@@ -347,7 +347,7 @@ When using these two files, you don't have to make any change inside. Except res
 
 You can create a folder named `test` and copy the test files inside.
 
-Note that `.spec.ts` extension shall be used for files containing unit test cases.
+**Note:** If your driver does not support a function `encodeDownlink`, all you have to do is to comment/remove the part related to `encodeDownlink` testing inside these two files.
 
 ### Test that the errors you should throw are actually thrown
 

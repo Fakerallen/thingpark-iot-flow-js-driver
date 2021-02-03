@@ -1,54 +1,35 @@
 {
-    "name": "simple-driver",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "jest"
+  "name": "simple-driver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage"
+  },
+  "driver": {
+    "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
+    "producerId": "actility",
+    "type": "thingpark-x-js",
+    "application": {
+      "producerId": "myProducer",
+      "moduleId": "myModule",
+      "version": "1"
     },
-    "driver": {
-        "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
-        "producerId": "actility",
-        "type": "thingpark-x-js",
-        "application": {
-            "producerId": "myProducer",
-            "moduleId": "myModule",
-            "version": "1"
-        },
-        "driver": {
-            "description": "myDriver description",
-            "producerId": "actility",
-            "type": "thingpark-x-js",
-            "application": {
-                "producerId": "myProducer",
-                "moduleId": "myModule",
-                "version": "1"
-            },
-            "driver": {
-                "producerId": "actility",
-                "type": "thingpark-x-js",
-                "application": {
-                    "producerId": "myProducer",
-                    "moduleId": "myModule",
-                    "version": "1"
-                },
-                "points": {
-                    "temperature": {
-                        "unitId": "Cel",
-                        "type": "double"
-                    },
-                    "humidity": {
-                        "unitId": "%RH",
-                        "type": "double"
-                    },
-                    "pulseCounter": {
-                        "type": "int64"
-                    }
-                }
-            },
-            "devDependencies": {
-                "jest": "^25.4.0"
-            }
-        }
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "type": "double"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "type": "double"
+      },
+      "pulseCounter": {
+        "type": "int64"
+      }
     }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
 }
