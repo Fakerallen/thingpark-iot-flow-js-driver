@@ -14,7 +14,7 @@ Add string length constraints in driver readme
 
 ### Bugfixes
 
-N/A
+Fix examples in iot-flow-js-driver on github
 
 ## 0.2.0
 
