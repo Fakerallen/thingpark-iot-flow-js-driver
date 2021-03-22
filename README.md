@@ -13,15 +13,16 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
         -   [Application](#application)
         -   [Uplink](#uplink)
         -   [Downlink](#downlink)
-    -   [API](#API)
-        -   [Driver definition](#driver-definition)
-        -   [Driver functions](#driver-functions)
-            -   [Uplink decode](#uplink-decode)
-            -   [Downlink encode](#downlink-encode)
-            -   [Downlink decode](#downlink-decode)
-            -   [Points extraction](#points-extraction)
-            -   [Payload examples](#payload-examples)
-    -   [Testing](#testing)
+    - [API](#API)
+        - [Driver definition](#driver-definition)
+        - [Driver functions](#driver-functions)
+            - [Uplink decode](#uplink-decode)
+            - [Downlink encode](#downlink-encode)
+            - [Downlink decode](#downlink-decode)
+            - [Points extraction](#points-extraction)
+            - [Payload examples](#payload-examples)
+    - [Packaging](#packaging)
+    - [Testing](#testing)
     -   [Examples](#examples)
         -   [Simple driver](#simple-driver)
         -   [Advanced driver](#advanced-driver)
@@ -496,12 +497,23 @@ The uplink/downlink example used is an object represented by the following json-
 
 **Important**
 
--   `description`: This field must be unique.
--   `points`: This field can be used in the `uplink` example if there is some values in the field `data` must be extracted as points.
+- `description`: This field must be unique.
+- `points`: This field can be used in the `uplink` example if there is some values in the field `data` must be extracted
+  as points.
+
+## Packaging
+
+To simplify the open distribution and integration with our platform, a packaging leveraging NPMs is defined.
+
+NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
+clear code layout that can be distributed independently using the developer preferred version control tool.
+
+You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md)
 
 ## Testing
 
-Testing your driver is a very important process, thus the user is highly encouraged to test the driver in most possible use cases as well as error cases.
+Testing your driver is a very important process, thus the user is highly encouraged to test the driver in most possible
+use cases as well as error cases.
 
 You can find a full example of tests [here](examples/simple-driver/test).
 
