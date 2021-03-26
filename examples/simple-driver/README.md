@@ -462,10 +462,25 @@ To execute tests, you must use the following command:
 npm test
 ```
 
-This command will give a full report about the coverage of your tests. The most important value in this report is the percentage of the statements coverage which appears under `stmts`.
+This command will give a full report about the coverage of your tests. The most important value in this report is the
+percentage of the statements coverage which appears under `stmts`.
 
 To execute a specific test, you can add the name of the test file in the command:
 
 ```shell
 npm test driver-examples.spec.js
 ```
+
+### Create a tarball from the package
+
+To create a tarball from the already defined package, you must use the following command:
+
+```shell
+npm pack
+```
+
+This command must be executed in the root folder of the driver. It will generate a `.tgz` file that contains all the
+files and directories of the driver.
+
+**Important:** You must avoid including the non-necessary files into the `.tgz` file as the `node_modules`
+and `coverage` directories for example. We recommend you to copy the file `.npmignore` from [here](.npmignore).
