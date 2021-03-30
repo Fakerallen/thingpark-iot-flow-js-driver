@@ -1,4 +1,4 @@
-## 0.4.0
+## 0.4.1
 
 ### Breaking change
 
@@ -10,7 +10,7 @@ Add packaging to iot-flow-js-driver documentation on github
 
 ### Bugfixes
 
-N/A
+Fixed the package in README
 
 ## 0.3.0
 
