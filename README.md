@@ -151,32 +151,32 @@ Here is an example of a `driver` definition:
   "scripts": {
     "test": "jest --collectCoverage"
   },
-    "driver": {
-      "description": "An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
-      "producerId": "actility",
-        "type": "thingpark-x-js",
-        "application": {
-            "producerId": "myProducer",
-            "moduleId": "myModule",
-            "version": "1"
-        },
-        "points": {
-            "temperature": {
-                "unitId": "Cel",
-                "type": "double"
-            },
-            "humidity": {
-                "unitId": "%RH",
-                "type": "double"
-            },
-            "pulseCounter": {
-                "type": "int64"
-            }
-        }
+  "driver": {
+    "description": "An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
+    "producerId": "actility",
+    "type": "thingpark-x-js",
+    "application": {
+      "producerId": "myProducer",
+      "moduleId": "myModule",
+      "version": "1"
     },
-    "devDependencies": {
-        "jest": "^25.4.0"
+    "points": {
+      "temperature": {
+        "unitId": "Cel",
+        "type": "double"
+      },
+      "humidity": {
+        "unitId": "%RH",
+        "type": "double"
+      },
+      "pulseCounter": {
+        "type": "int64"
+      }
     }
+  },
+  "devDependencies": {
+    "jest": "^25.4.0"
+  }
 }
 ```
 
