@@ -10,6 +10,8 @@ Add packaging to iot-flow-js-driver documentation on github
 
 ### Bugfixes
 
+Jest must throw error when point is missing in example
+
 Fixed the package in README
 
 ## 0.3.0
