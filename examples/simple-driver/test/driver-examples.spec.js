@@ -112,7 +112,6 @@ describe("Extract points", () => {
 
                 // When
                 const result = driver.extractPoints(input);
-
                 // Then
                 Object.keys(result).forEach((point) => {
                     if(packageJson.driver.points[point] != null){
@@ -125,7 +124,13 @@ describe("Extract points", () => {
                         throw new Error(point + " is not defined in the package.json");
                     }
                 });
+                expect(Object.keys(result)).toStrictEqual(Object.keys(example.points));
             });
         }
     });
 });
+
+function compare(a, b) {
+    return [...new Set([...Object.keys(a), ...Object.keys(b)])]
+        .every(k => k in a && k in b);
+}
