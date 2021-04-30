@@ -129,8 +129,3 @@ describe("Extract points", () => {
         }
     });
 });
-
-function compare(a, b) {
-    return [...new Set([...Object.keys(a), ...Object.keys(b)])]
-        .every(k => k in a && k in b);
-}

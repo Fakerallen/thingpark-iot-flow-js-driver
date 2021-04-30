@@ -125,6 +125,7 @@ describe("Extract points", () => {
                         throw new Error(point + " is not defined in the package.json");
                     }
                 });
+                expect(Object.keys(result)).toStrictEqual(Object.keys(example.points));
             });
         }
     });
