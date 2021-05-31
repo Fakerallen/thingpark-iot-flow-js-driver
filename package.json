@@ -1,6 +1,6 @@
 {
     "name": "iot-flow-js-sdk",
-    "version": "0.4.1-SNAPSHOT",
+    "version": "0.4.1-ifd-237-jest-tests-must-throw-error-when-point-is-missing-in-example-SNAPSHOT",
     "description": "ThingPark X - IoT Flow JavaScript Driver SDK",
     "author": "TPX",
     "copyright": "© 2021 Actility",
