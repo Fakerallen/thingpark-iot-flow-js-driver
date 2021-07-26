@@ -10,6 +10,8 @@ Add packaging to iot-flow-js-driver documentation on github
 
 ### Bugfixes
 
+Fixed test files to support records in array
+
 Jest must throw error when point is missing in example
 
 Fixed the package in README
