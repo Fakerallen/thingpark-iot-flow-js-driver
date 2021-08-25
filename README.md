@@ -37,6 +37,10 @@ communication protocol. It is the core part of the IoT Flow framework to interac
 If a device is exposing several incompatible communication protocols, then several drivers needs to be implemented,
 one for each.
 
+The programming language used in this codec is the JavaScript which is a lightweight, interpreted, just-in-time compiled programming language with first class functions.
+
+More precisely, the JavaScript ES5 is used as it is simple and widely supported in most communities.
+
 ### Thing
 
 The `thing` is the cloud representation of a device that can interact with the IoT Flow framework. It can be of two

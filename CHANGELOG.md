@@ -6,6 +6,8 @@ N/A
 
 ### Features
 
+Update driver github documentation
+
 Add packaging to iot-flow-js-driver documentation on github
 
 Add description in drivers
