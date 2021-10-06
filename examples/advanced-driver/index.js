@@ -109,6 +109,12 @@ function extractPoints(input) {
             value: input.message.pulseCounter,
         };
     }
+    if (typeof input.message.humidity !== "undefined") {
+        result.airHumidity = {
+            eventTime: input.time,
+            value: input.message.humidity,
+        };
+    }
     return result;
 }
 

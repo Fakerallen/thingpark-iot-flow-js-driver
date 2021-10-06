@@ -20,7 +20,8 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
             - [Downlink encode](#downlink-encode)
             - [Downlink decode](#downlink-decode)
             - [Points extraction](#points-extraction)
-            - [Payload examples](#payload-examples)
+        - [Payload examples](#payload-examples)
+        - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
     - [Testing](#testing)
     -   [Examples](#examples)
@@ -58,7 +59,9 @@ The `point` extracted by the driver is composed of a list of point in time value
 It has a mandatory `eventTime` and a `value` and/or `coordinates`.
 The `value` represents the actual value of the point at the given `eventTime` while the `coordinates` represents the
 GPS position of the `thing` at the given `eventTime`. It is possible to provide only the `coordinates` in which case it
-represents the position of the device at the provided `eventTime`
+represents the position of the device at the provided `eventTime`.
+
+The points defined in each driver must follow a predefined ontology of units if exist. You can find more information in [driver definition](#driver-definition) section.
 
 ### Application
 
@@ -151,6 +154,10 @@ Here is an example of a `driver` definition:
   "name": "example-driver",
   "version": "1.0.0",
   "description": "My example driver",
+  "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
+  "deviceImageUrl": "https://market.thingpark.com/media/catalog/product/cache/e0c0cc57a7ea4992fdbd34d6aec6829f/r/o/roximity-detection-_-contact-tracing-starter-kit.jpg",
+  "manufacturerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
+  "providerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
   "main": "index.js",
   "scripts": {
     "test": "jest --collectCoverage"
@@ -172,6 +179,11 @@ Here is an example of a `driver` definition:
       "humidity": {
         "unitId": "%RH",
         "type": "double"
+      },
+      "airHumidity": {
+        "unitId": "%RH",
+        "type": "double",
+        "ontology": "unsupported"
       },
       "pulseCounter": {
         "type": "int64"
@@ -198,17 +210,22 @@ In addition, we declare `driver.description` equal to `An example driver that is
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 
 The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
-for a complete description). It describes a "contract" of points that can be extracted with the `driver`. Each point can
-declare two properties:
+for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 
+The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that ontology is unsupported. 
+[Here](UNITS.md) you can see a list of all possible points names in the property `fields` in each unit.
+Each point can declare three properties:
 
--   `type`: this is a **mandatory** property representing the point type. Possible values are:
-    -   `string`
-    -   `int64`
-    -   `double`
-    -   `boolean`
--   `unitId`: this is an optional value that represents the point unit in case its `type` is `double` or `int64`. The
-    list of possible units are defined [here](UNITS.md). If a `unitId` is missing, you can raise an issue in this project
+- `type`: this is a **mandatory** property representing the point type. Possible values are:
+    - `string`
+    - `int64`
+    - `double`
+    - `boolean`
+    - `object`
+- `unitId`: this is an optional value that represents the point unit in case its `type` is `double`, `int64`, or `object`. The
+    list of possible units are predefined [here](UNITS.md) according to the ontology. If a `unitId` is missing, you can raise an issue in this project
     to integrate it.
+- `ontology`: this is an optional property that can take the value `unsupported` in case the point define a unit and does not follow 
+    the ontology concerning its `name`, `type`, `unitId`.
 
 Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
 
@@ -220,6 +237,13 @@ Some regular NPM properties in `package.json` are also leveraged by ThingPark X 
 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
 `{driver.producerId}:{name-without-scope}:{major-version}`
+
+Some optional properties can be added to ease the use of the driver:
+
+- `specification`: A url that refers to the datasheet/manual of the device that corresponds to this driver.
+- `deviceImageUrl`: A url that refers to the image of the device that corresponds to this driver.
+- `manufacturerLogoUrl`: A url that refers to the logo image of the manufacturer of the device.
+- `providerLogoUrl`: A url that refers to the logo image of the provider of this driver.
 
 **Important:** There is some limitations on the length of fields in `package.json`:
 
@@ -410,7 +434,7 @@ Several examples of uplink and downlink payloads must be declared directly in th
 
 These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development ( you can look at [here](examples/simple-driver/test/driver-examples.spec.js) ).
 
-An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/examples/humidity.examples.json) )
+An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/examples/humidity.examples.json).
 
 #### Example
 
@@ -496,6 +520,17 @@ The uplink/downlink example used is an object represented by the following json-
 - `description`: This field must be unique.
 - `points`: This field can be used in the `uplink` example if there is some values in the field `data` must be extracted
   as points.
+
+### Json Schemas
+
+The following section describes the Json Schema of the decoded payloads of the driver.
+
+As the output data from the decoding payload process is not predictable, it is better to declare Json schemas that defines the structure of this output to ease the use of driver after decoding.
+
+The Json schemas of uplink and downlink payloads must be declared directly in the driver package and especially in a directory `/json-schemas`.
+Two Json schemas can be declared following the pattern : `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
+
+An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/json-schemas) 
 
 ## Packaging
 

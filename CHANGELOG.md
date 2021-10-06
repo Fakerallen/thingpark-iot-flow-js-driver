@@ -1,10 +1,12 @@
-## 0.2.0
+## 1.0.0
 
 ### Breaking change
 
-N/A
+Update points concept to follow the naming convention of ontology
 
 ### Features
+
+Add Json Schema, specification, urls
 
 Update driver github documentation
 
