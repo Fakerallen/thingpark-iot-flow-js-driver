@@ -117,18 +117,12 @@ describe("Extract points", () => {
                 Object.keys(example.points).forEach((point) => {
                     if(packageJson.driver.points[point] != null){
                         const expectedPoint = packageJson.driver.points[point];
-                        if(!Array.isArray(result[point])){
-                            expectedPoint.records = [];
-                            expectedPoint.records.push(result[point]);
-                        } else {
-                            expectedPoint.records = result[point];
-                        }
+                        expectedPoint.record = result[point];
 
                         expect(expectedPoint).toStrictEqual(example.points[point]);
                     } else {
                         throw new Error(point + " is not defined in the package.json");
                     }
-
                 });
             });
         }

@@ -55,11 +55,12 @@ kinds:
 
 The `point` represents a value that could be extracted from a `thing`. It maps directly with a sensor, an
 actuator or a configuration variable. It is defined by an `id`, a `unitId` and a `type`.
-The `point` extracted by the driver is composed of a list of point in time values (although most of the time there is only one of them).
-It has a mandatory `eventTime` and a `value` and/or `coordinates`.
-The `value` represents the actual value of the point at the given `eventTime` while the `coordinates` represents the
-GPS position of the `thing` at the given `eventTime`. It is possible to provide only the `coordinates` in which case it
-represents the position of the device at the provided `eventTime`.
+The `point` extracted by the driver is composed of a list of point in values (although most of the time there is only one of them).
+It has a mandatory property `record` that represents the actual value of the point. 
+The `record` can be a string, number, or an array. 
+There is two cases where a record can be an array:
+- The point extracted contains different values.
+- The point extracted define a geolocation value where the first element of the array is the latitude, and the second is the longitude.
 
 The points defined in each driver must follow a predefined ontology of units if exist. You can find more information in [driver definition](#driver-definition) section.
 
@@ -379,50 +380,14 @@ The `input` is an object provided by the IoT Flow framework that is represented 
 }
 ```
 
-The returned object is defined by the following json-schema:
-
-```json
-{
-    "type": "object",
-    "additionalProperties": {
-        "type": "object",
-        "properties": {
-            "eventTime": {
-                "type": "string",
-                "format": "date-time",
-                "required": true
-            },
-            "value": {
-                "type": ["string", "number", "boolean"],
-                "required": false
-            },
-            "coordinates": {
-                "type": "array",
-                "items": {
-                    "type": "number"
-                },
-                "required": false
-            }
-        }
-    }
-}
+The returned object must be the wrapped object from the decoded one, respecting the ontology.
 ```
-
-`value` and `coordinates` _could_ be missing on a point, one of them is actually needed, so your
-driver _must_ return either `value` or `coordinates` (as well as `eventTime`) for _every_ point.
-
 Here's an example:
 
 ```json
 {
-    "temperature": {
-        "eventTime": "2019-01-01T10:00:00+01:00",
-        "value": 31.4
-    },
-    "gps": {
-        "eventTime": "2019-01-01T10:00:00+01:00",
-        "coordinates": [48.875158, 2.333822]
-    }
+    "temperature": 31.4,
+    "gps": [48.875158, 2.333822]
 }
 ```
 
@@ -491,22 +456,8 @@ The uplink/downlink example used is an object represented by the following json-
                     "type": "string",
                     "required": true
                 },
-                "records": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "eventTime": {
-                                "type": "string",
-                                "format": "date-time",
-                                "required": true
-                            },
-                            "value": {
-                                "type": ["string", "number", "boolean"],
-                                "required": false
-                            }
-                        }
-                    },
+                "record": {
+                    "type": ["string", "number", "boolean"],
                     "required": true
                 }
             }

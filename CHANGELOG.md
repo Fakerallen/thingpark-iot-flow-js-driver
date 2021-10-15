@@ -2,6 +2,8 @@
 
 ### Breaking change
 
+TXIF-1483 | Change points records algorithm
+
 Update points concept to follow the naming convention of ontology
 
 ### Features

@@ -115,7 +115,7 @@ function decodeUplink(input) {
                 }
                 var tmp = (bytes[i + 1] << 8) | bytes[i + 2];
                 tmp = readShort(tmp);
-                result.temperature = tmp / 100;
+                result.temp = tmp / 100;
                 i += 2;
                 break;
             // Humidity - 2 bytes
@@ -305,36 +305,25 @@ Add the following function in `index.js`:
 ```javascript
 function extractPoints(input) {
     var result = {};
-    if (typeof input.message.temperature !== "undefined") {
-        result.temperature = {
-            eventTime: input.time,
-            value: input.message.temperature,
-        };
+    if (typeof input.message.temp !== "undefined") {
+        result.temperature = input.message.temp;
     }
     if (typeof input.message.humidity !== "undefined") {
-        result.humidity = {
-            eventTime: input.time,
-            value: input.message.humidity,
-        };
+        result.humidity = input.message.humidity;
     }
     if (typeof input.message.pulseCounter !== "undefined") {
-        result.pulseCounter = {
-            eventTime: input.time,
-            value: input.message.pulseCounter,
-        };
+        result.pulseCounter = input.message.pulseCounter;
     }
     if (typeof input.message.humidity !== "undefined") {
-        result.airHumidity = {
-            eventTime: input.time,
-            value: input.message.humidity,
-        };
+        result.airHumidity = input.message.humidity;
     }
     return result;
 }
 ```
 
-As you can see, the `input.time` is required so you can set the `eventTime` field on each point. Here, we simply retrieve
-the value from the input, for example the `temperature` value is `input.message.temperature`.
+Here, we simply retrieve the value from the input, for example the `temperature` value is `input.message.temp` to follow the naming convention of the ontology.
+
+The names of points extracted must match the ones in `package.json` to be completed and verified with the `unitId` and `type`.
 
 ## Returning errors
 
