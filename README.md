@@ -214,6 +214,12 @@ The `points` section is **mandatory** only when using the `extractPoints(input)`
 for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 
 The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that ontology is unsupported. 
 [Here](UNITS.md) you can see a list of all possible points names in the property `fields` in each unit.
+
+Our ontology/units follow the form of  [oBIX protocol](http://docs.oasis-open.org/obix/obix/v1.1/csprd01/obix-v1.1-csprd01.pdf)
+which provides an extensive database of predefined units that are represented in seven main dimensions.
+These seven dimensions are represented in SI respectively as kilogram (kg), meter (m), 
+second (sec), Kelvin (K), ampere (A), mole (mol), and candela (cd).
+
 Each point can declare three properties:
 
 - `type`: this is a **mandatory** property representing the point type. Possible values are:

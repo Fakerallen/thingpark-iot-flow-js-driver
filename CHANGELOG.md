@@ -8,6 +8,8 @@ Update points concept to follow the naming convention of ontology
 
 ### Features
 
+TXIF-1543 | Add link to obix documentation on github 
+
 Add Json Schema, specification, urls
 
 Update driver github documentation
