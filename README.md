@@ -47,9 +47,9 @@ More precisely, the JavaScript ES5 is used as it is simple and widely supported 
 The `thing` is the cloud representation of a device that can interact with the IoT Flow framework. It can be of two
 kinds:
 
--   A device: a physical device that uses a communication protocol (for example LoRaWAN)
+-   A device: a physical device that uses a communication protocol (for example LoRaWAN).
 -   A "virtual" device: some application running on an appliance that acts like a physical device or which represents an
-    aggregated view of several devices (for example an aggregated temperature)
+    aggregated view of several devices (for example an aggregated temperature).
 
 ### Point
 
@@ -69,11 +69,11 @@ The points defined in each driver must follow a predefined ontology of units if 
 The `application` identifies a communication protocol exposed by a device. It is composed of 3 information:
 
 -   `producerId`: who specifies this communication protocol, could be either a manufacturer or an entity defining a
-    public standard. **This value must be agreed with Actility**
+    public standard. **This value must be agreed with Actility**.
 -   `moduleId`: an identifier for the communication protocol name. This value is decided by the manufacturer or the
     entity providing the public standard.
 -   `version`: the communication protocol version. This value is decided by the manufacturer or the entity providing
-    the public standard. It must only identifies the major version of the protocol
+    the public standard. It must only identifies the major version of the protocol.
 
 This information is important for ThingPark X IoT Flow framework as it allows to identify the protocol exposed by
 a device especially when several are possible for a single one.
@@ -88,9 +88,9 @@ from v3 the device is now exposing a standard ZCL (ZigBee Cluster Library) paylo
 
 In this case the `application` for pre v3 firmware devices would be:
 
--   `producerId`: `acme` (decided with Actility)
+-   `producerId`: `acme` (decided with Actility).
 -   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `1` (major version of the acme generic protocol)
+-   `version`: `1` (major version of the acme generic protocol).
 
 For post v3 firmware devices the protocol would be:
 
@@ -116,30 +116,30 @@ payload length or the LoRaWAN context. Therefore, we need to declare two `applic
 
 So for this example, the `application` for pre v4 firmware devices would be:
 
--   `producerId`: `acme` (decided with Actility)
--   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `1` (major version of the acme generic protocol)
+-   `producerId`: `acme` (decided with Actility).
+-   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company).
+-   `version`: `1` (major version of the acme generic protocol).
 
 For post v4 firmware devices the protocol would be:
 
--   `producerId`: `acme` (decided with Actility)
--   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `2` (major version of the acme generic protocol)
+-   `producerId`: `acme` (decided with Actility).
+-   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company).
+-   `version`: `2` (major version of the acme generic protocol).
 
 ### Uplink
 
-A packet sent from the `thing` to the cloud
+A packet sent from the `thing` to the cloud.
 
 ### Downlink
 
-A packet sent from the cloud to the `thing`
+A packet sent from the cloud to the `thing`.
 
 ## API
 
 A driver is composed of 2 parts:
 
--   a static configuration defining the `driver` metadata
--   a javascript code made of four possible functions to perform the encoding and decoding tasks
+-   a static configuration defining the `driver` metadata.
+-   a javascript code made of four possible functions to perform the encoding and decoding tasks.
 
 ### Driver definition
 
@@ -233,11 +233,11 @@ Some regular NPM properties in `package.json` are also leveraged by ThingPark X 
 -   `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
     `@actility/example-driver`, the scope will be removed when building it.
 -   `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
-    modifying its `driver`
+    modifying its `driver`.
 -   `description`: will be used as a short friendly name for the `driver`. It should not be very long.
 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
-`{driver.producerId}:{name-without-scope}:{major-version}`
+`{driver.producerId}:{name-without-scope}:{major-version}`.
 
 Some optional properties can be added to ease the use of the driver:
 
@@ -260,7 +260,7 @@ Some optional properties can be added to ease the use of the driver:
 The following sections describe the four javascript functions that a driver can declare to perform encoding and decoding
 tasks.
 
-A driver must at least declare a `decodeUplink(input)` function to be valid (see next section)
+A driver must at least declare a `decodeUplink(input)` function to be valid (see next section).
 
 #### Uplink decode
 
@@ -270,7 +270,7 @@ Uplinks are decoded by calling the following function:
 function decodeUplink(input) {...}
 ```
 
-_Note:_ _this function is required in order for the driver to be valid_
+_Note:_ _this function is required in order for the driver to be valid_.
 
 The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
 
@@ -324,7 +324,7 @@ where the `message` object is the higher-level object representing your downlink
 The function must return an object containg 2 fields:
 
 -   bytes: array of numbers as it will be sent to the device.
--   fPort: the fPort on which the downlink must be sent
+-   fPort: the fPort on which the downlink must be sent.
 
 #### Downlink decode
 
@@ -479,9 +479,9 @@ The following section describes the Json Schema of the decoded payloads of the d
 As the output data from the decoding payload process is not predictable, it is better to declare Json schemas that defines the structure of this output to ease the use of driver after decoding.
 
 The Json schemas of uplink and downlink payloads must be declared directly in the driver package and especially in a directory `/json-schemas`.
-Two Json schemas can be declared following the pattern : `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
+Two Json schemas can be declared following the pattern: `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
 
-An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/json-schemas) 
+An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/json-schemas). 
 
 ## Packaging
 
@@ -490,7 +490,7 @@ To simplify the open distribution and integration with our platform, a packaging
 NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
 clear code layout that can be distributed independently using the developer preferred version control tool.
 
-You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md)
+You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md).
 
 ## Testing
 
@@ -512,4 +512,4 @@ the creation of a driver for a fictive device exposing a temperature, humidity a
 
 If your device payload is complex and requires several source code files to increase readability and maintainability you
 can look at this example [here](examples/advanced-driver/README.md). In this tutorial, we will restart from the
-previously created driver and transform it to use several files
+previously created driver and transform it to use several files.

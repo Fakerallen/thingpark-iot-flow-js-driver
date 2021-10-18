@@ -341,7 +341,7 @@ _Note: All throws that do not throw an `Error` object will be ignored by the IoT
 
 We use [Jest](https://jestjs.io/) as our testing framweork.
 
-_Note: when testing, you will need to export the functions that you test (unless of course you copy / paste the functions into the testing file). This is *not* needed in your driver if not tested_
+_Note: when testing, you will need to export the functions that you test (unless of course you copy / paste the functions into the testing file). This is *not* needed in your driver if not tested_.
 
 To exports functions, you can add the following at the end of the `index.js` file:
 
@@ -370,7 +370,7 @@ First, you need to add the `test` script in the `package.json`:
   }
 ```
 
-Then, you will be able to launch tests using command `npm test`
+Then, you will be able to launch tests using command `npm test`.
 
 ### Create files
 
@@ -475,8 +475,6 @@ The error example used to test `encodeDownlink`/`extractPoints` function is an o
         "required": true
     }
 ```
-
-#
 
 **Important:** `description` field must be unique.
 
