@@ -184,7 +184,7 @@ Here is an example of a `driver` definition:
       "airHumidity": {
         "unitId": "%RH",
         "type": "double",
-        "ontology": "unsupported"
+        "standardNaming": "unsupported"
       },
       "pulseCounter": {
         "type": "int64"
@@ -212,7 +212,7 @@ This driver also declares that it will extract 3 points which are: `temperature`
 
 The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
 for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 
-The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that ontology is unsupported. 
+The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that standard naming is unsupported. 
 [Here](UNITS.md) you can see a list of all possible points names in the property `fields` in each unit.
 
 Our ontology/units follow the form of  [oBIX protocol](http://docs.oasis-open.org/obix/obix/v1.1/csprd01/obix-v1.1-csprd01.pdf)
@@ -231,8 +231,8 @@ Each point can declare three properties:
 - `unitId`: this is an optional value that represents the point unit in case its `type` is `double`, `int64`, or `object`. The
     list of possible units are predefined [here](UNITS.md) according to the ontology. If a `unitId` is missing, you can raise an issue in this project
     to integrate it.
-- `ontology`: this is an optional property that can take the value `unsupported` in case the point define a unit and does not follow 
-    the ontology concerning its `name`, `type`, `unitId`.
+- `standardNaming`: this is an optional property that can take the value `unsupported` in case the point define a unit and does not follow 
+    the ontology concerning its `name`.
 
 Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
 

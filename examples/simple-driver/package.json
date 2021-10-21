@@ -34,7 +34,7 @@
       "airHumidity": {
         "unitId": "%RH",
         "type": "double",
-        "ontology": "unsupported"
+        "standardNaming": "unsupported"
       }
     }
   },

@@ -283,7 +283,7 @@ So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumid
             "airHumidity": {
                 "unitId": "%RH",
                 "type": "double",
-                "ontology": "unsupported"
+                "standardNaming": "unsupported"
             }
         }
     }
@@ -291,12 +291,12 @@ So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumid
 ```
 
 As explained in [Point](#point) section, a point can contain a `unitId`, which represents its unit (see [Units]()) and a `type` (see [Point types]()). 
-A `ontology` property can be added with the value `unsupported` in case the point uses a unit that does not follow the ontology.
+A `standardNaming` property can be added with the value `unsupported` in case the point uses a unit that does not follow the ontology.
 In this case we have two `points` (or "containers") where our values will be grouped: 
 - `temperature` which is of type `double` and has unit `Celsius`.
 - `humidty` which is of type `double` and has unit `%RH`.
 - `pulseCounter` which has type `int64` and has no unit because it is a counter.
-- `airHumidty` which is of type `double` and has unit `%RH` and it is ontology `unsupported`.
+- `airHumidty` which is of type `double` and has unit `%RH` and it is standard naming `unsupported`.
 
 After having defined the points' "contract", we can now add the `extractPoints(input)` function that will implement it.
 
