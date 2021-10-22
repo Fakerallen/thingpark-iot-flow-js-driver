@@ -2,9 +2,9 @@
 
 ### Breaking change
 
-TXIF-1483 | Change points records algorithm
+TXIF-1570 | Update fields for all units in ontology
 
-Update points concept to follow the naming convention of ontology
+TXIF-1483 | Change points records algorithm
 
 ### Features
 

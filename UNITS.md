@@ -2,103 +2,103 @@
 | ------------------------------------- | --------- | ------ | ------------------- | -------------------
 | Gps                                   | Gps       | object | Gps                 | location
 | Ampere                                | A         | double | A                   | current
-| Bar                                   | bar       | double | bar                 |
-| Becquerel                             | Bq        | double | Bq                  |
-| Bel                                   | Bspl      | double | bel                 |
-| Bit                                   | bit       | double | bit                 |
-| Bit per second                        | bit/s     | double | bit/s               |
-| Candela                               | cd        | double | cd                  |
-| Candela per square meter              | cd/m2     | double | cd/m&#178;          |
+| Bar                                   | bar       | double | bar                 | pressure
+| Becquerel                             | Bq        | double | Bq                  | radioactivity
+| Bel                                   | Bspl      | double | bel                 | intensity, snr
+| Bit                                   | bit       | double | bit                 | data, storage
+| Bit per second                        | bit/s     | double | bit/s               | dataSpeed
+| Candela                               | cd        | double | cd                  | intensity
+| Candela per square meter              | cd/m2     | double | cd/m&#178;          | brightness
 | Celsius                               | Cel       | double | "&#176;C            | temperature
-| Centimeter                            | cm        | double | cm                  |
-| Coulomb                               | C         | double | C                   |
-| Count per second                      | count/s   | double | count/s             |
-| Count per minute                      | count/min | double | count/min           |
-| Cubic meter                           | m3        | double | m&#179;             |
-| Cubic meter per hour                  | m3/h      | double | m&#179;/h           |
-| Cubic meter per second                | m3/s      | double | m&#179;/s           |
+| Centimeter                            | cm        | double | cm                  | distance
+| Coulomb                               | C         | double | C                   | electricCharge
+| Count per second                      | count/s   | double | count/s             | eventRate, rate
+| Count per minute                      | count/min | double | count/min           | eventRate, rate
+| Cubic meter                           | m3        | double | m&#179;             | volume
+| Cubic meter per hour                  | m3/h      | double | m&#179;/h           | flowRate
+| Cubic meter per second                | m3/s      | double | m&#179;/s           | flowRate
 | Decibel                               | dB        | double | dB                  | intensity, snr
 | Decibel relative to 1mW               | dBm       | double | dBm                 | rssi
-| Decibel relative to 1W                | dBW       | double | dBW                 |
-| Degree                                | deg       | double | &#176;              |
-| Degrees per second                    | dps       | double | dps                 |
-| Dillution of precision                | dop       | double | dop                 |
-| Euro                                  | euro      | double | &#8364;             |
-| Euro per watthour                     | euro/Wh   | double | &#8364;/Wh          |
-| Fahrenheit                            | Far       | double | &#176;F             |
-| Farad                                 | F         | double | F                   |
-| Gigawatt                              | GW        | double | GW                  |
-| Gram                                  | g         | double | g                   |
-| Acceleration compared to earth gravity| gravity   | double | G                   |
+| Decibel relative to 1W                | dBW       | double | dBW                 | powerLevel
+| Degree                                | deg       | double | &#176;              | angle
+| Degrees per second                    | dps       | double | dps                 | angularVelocity
+| Dillution of precision                | dop       | double | dop                 | navigation
+| Euro                                  | euro      | double | &#8364;             | price
+| Euro per watthour                     | euro/Wh   | double | &#8364;/Wh          | energyPrice
+| Fahrenheit                            | Far       | double | &#176;F             | temperature
+| Farad                                 | F         | double | F                   | capacitance
+| Gigawatt                              | GW        | double | GW                  | power
+| Gram                                  | g         | double | g                   | mass
+| Acceleration compared to earth gravity| gravity   | double | G                   | acceleration, vibration
 | Gray                                  | Gy        | double | Gy                  | radiation
-| Hectopascal                           | hPa       | double | hPa                 |
-| Henry                                 | H         | double | H                   |
+| Hectopascal                           | hPa       | double | hPa                 | pressure
+| Henry                                 | H         | double | H                   | inductance
 | Hertz                                 | hertz     | double | Hz                  | frequency, sound
-| Joule                                 | J         | double | J                   |
-| Katal                                 | kat       | double | kat                 |
-| Kelvin                                | K         | double | K                   |
-| Kilogram                              | kg        | double | kg                  |
-| Kilometer                             | km        | double | km                  |
-| Kilometer per hour                    | km/h      | double | km/h                |
-| Kilopascal                            | kPa       | double | kPa                 |
-| Kilowatt                              | kW        | double | kW                  |
-| Kilowatthour                          | kWh       | double | kWh                 |
-| Liter                                 | l         | double | l                   |
-| Liter per second                      | l/s       | double | l/s                 |
-| Lumen                                 | lm        | double | lm                  |
-| Lux                                   | lx        | double | lx                  |
-| Megawatt                              | MW        | double | MW                  |
-| Megawatthour                          | MWh       | double | MWh                 |
-| Megawatt per minute                   | MW/m      | double | MW/m                |
-| Meter                                 | m         | double | m                   |
-| Meter per second                      | m/s       | double | m/s                 |
+| Joule                                 | J         | double | J                   | energy
+| Katal                                 | kat       | double | kat                 | catalyticActivity
+| Kelvin                                | K         | double | K                   | temperature
+| Kilogram                              | kg        | double | kg                  | mass
+| Kilometer                             | km        | double | km                  | distance
+| Kilometer per hour                    | km/h      | double | km/h                | velocity, speed
+| Kilopascal                            | kPa       | double | kPa                 | pressure
+| Kilowatt                              | kW        | double | kW                  | power
+| Kilowatthour                          | kWh       | double | kWh                 | energy
+| Liter                                 | l         | double | l                   | volume, capacity
+| Liter per second                      | l/s       | double | l/s                 | flowRate
+| Lumen                                 | lm        | double | lm                  | flux
+| Lux                                   | lx        | double | lx                  | flux
+| Megawatt                              | MW        | double | MW                  | power
+| Megawatthour                          | MWh       | double | MWh                 | energy
+| Megawatt per minute                   | MW/m      | double | MW/m                | powerRate
+| Meter                                 | m         | double | m                   | distance
+| Meter per second                      | m/s       | double | m/s                 | velocity, speed
 | Meter per square second               | m/s2      | double | m/s&#178;           | acceleration, vibration
-| Microgram                             | ug        | double | &#181;g             |
-| Microgram per cubic meter             | ug/m3     | double | &#181;g/m&#179;     |
-| Micrometer                            | um        | double | &#181;m             |
-| Micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s |
-| Microsiemens per centimeter           | uS/cm     | double | &#181;S/cm          |
-| Microvolt                             | uV        | double | uV                  |
-| Milliampere                           | mA        | double | mA                  |
-| Millibar                              | mbar      | double | mbar                |
-| Milliliter                            | ml        | double | ml                  |
-| Millimeter                            | mm        | double | mm                  |
-| Millimeter per second                 | mm/s      | double | mm/s                |
-| Millimeter per hour                   | mm/h      | double | mm/h                |
-| Millisecond                           | ms        | double | ms                  |
-| Millisiemens per centimeter           | mS/cm     | double | mS/cm               |
-| Millivolt                             | mV        | double | mV                  |
-| Minute                                | minute    | double | min                 |
-| Mole                                  | mol       | double | mol                 |
-| Newton                                | N         | double | N                   |
-| Nephelometric turbidity               | ntu       | double | ntu                 |
-| Okta                                  | okta      | int64  | okta                |
-| Ohm                                   | Ohm       | double | &#8486;             |
-| Parts per billion                     | ppb       | double | ppb                 |
-| Parts per million                     | ppm       | double | ppm                 |
-| Pascal                                | Pa        | double | Pa                  |
+| Microgram                             | ug        | double | &#181;g             | mass
+| Microgram per cubic meter             | ug/m3     | double | &#181;g/m&#179;     | concentration
+| Micrometer                            | um        | double | &#181;m             | distance
+| Micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity
+| Microsiemens per centimeter           | uS/cm     | double | &#181;S/cm          | conductivity
+| Microvolt                             | uV        | double | uV                  | batteryVoltage
+| Milliampere                           | mA        | double | mA                  | current
+| Millibar                              | mbar      | double | mbar                | pressure
+| Milliliter                            | ml        | double | ml                  | volume, capacity
+| Millimeter                            | mm        | double | mm                  | distance
+| Millimeter per second                 | mm/s      | double | mm/s                | velocity, speed
+| Millimeter per hour                   | mm/h      | double | mm/h                | velocity, speed
+| Millisecond                           | ms        | double | ms                  | time, duration
+| Millisiemens per centimeter           | mS/cm     | double | mS/cm               | conductivity
+| Millivolt                             | mV        | double | mV                  | batteryVoltage
+| Minute                                | minute    | double | min                 | time, duration
+| Mole                                  | mol       | double | mol                 | amount, quantity
+| Newton                                | N         | double | N                   | force
+| Nephelometric turbidity               | ntu       | double | ntu                 | nephelometricTurbidity, turbidity
+| Okta                                  | okta      | int64  | okta                | cloudCover, cover
+| Ohm                                   | Ohm       | double | &#8486;             | resistance
+| Parts per billion                     | ppb       | double | ppb                 | amount, quantity, concentration
+| Parts per million                     | ppm       | double | ppm                 | amount, quantity, concentration
+| Pascal                                | Pa        | double | Pa                  | pressure
 | Percentage                            | %         | double | %                   | batteryLevel, percentage
 | Percentage relative humidity          | %RH       | double | %RH                 | humidity
-| pH                                    | pH        | double | pH                  |
-| Pulse per hour                        | pulse/h   | double | pulse/h             |
-| Radian                                | rad       | double | rad                 |
-| Rate                                  | /         | double | rate                |
-| Rotations per minute                  | rpm       | double | rpm                 |
+| pH                                    | pH        | double | pH                  | acidity
+| Pulse per hour                        | pulse/h   | double | pulse/h             | frequency, sound
+| Radian                                | rad       | double | rad                 | angle
+| Rate                                  | /         | double | rate                | rate
+| Rotations per minute                  | rpm       | double | rpm                 | angularVelocity
 | Second                                | s         | double | s                   | time, duration
-| Siemens                               | S         | double | S                   |
-| Siemens per meter                     | S/m       | double | S/m                 |
-| Sievert                               | Sv        | double | Sv                  |
-| Square meter                          | m2        | double | m&#178;             |
-| Steradian                             | sr        | double | sr                  |
-| Tesla                                 | T         | double | T                   |
-| Volt-Ampere                           | VA        | double | VA                  |
-| Volt-Ampere hour                      | VAh       | double | VAh                 |
-| Volt-Ampere reactive                  | var       | double | var                 |
-| Volt-Ampere reactive hour             | varh      | double | varh                |
+| Siemens                               | S         | double | S                   | conductance
+| Siemens per meter                     | S/m       | double | S/m                 | conductivity
+| Sievert                               | Sv        | double | Sv                  | radiationEffect
+| Square meter                          | m2        | double | m&#178;             | area
+| Steradian                             | sr        | double | sr                  | solidAngle
+| Tesla                                 | T         | double | T                   | magneticDensity
+| Volt-Ampere                           | VA        | double | VA                  | apparentPower
+| Volt-Ampere hour                      | VAh       | double | VAh                 | apparentEnergy
+| Volt-Ampere reactive                  | var       | double | var                 | reactivePower
+| Volt-Ampere reactive hour             | varh      | double | varh                | reactiveEnergy
 | Volt                                  | V         | double | V                   | batterVoltage
-| Watt                                  | W         | double | W                   |
-| Watt per hour                         | W/h       | double | W/h                 |
-| Watt per second                       | W/s       | double | W/s                 |
-| Watt per square meter                 | W/m2      | double | W/m&#178;           |
-| Watthour                              | Wh        | double | Wh                  |
-| Weber                                 | Wb        | double | Wb                  |
+| Watt                                  | W         | double | W                   | power
+| Watt per hour                         | W/h       | double | W/h                 | powerRate
+| Watt per second                       | W/s       | double | W/s                 | powerRate
+| Watt per square meter                 | W/m2      | double | W/m&#178;           | irradiance
+| Watthour                              | Wh        | double | Wh                  | energy
+| Weber                                 | Wb        | double | Wb                  | magneticFlux
