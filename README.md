@@ -6,7 +6,7 @@ A driver allows to easily integrate new devices in ThingPark X IoT Flow. With it
 how to decode uplinks/downlinks, how to encode downlinks and how to extract points.
 
 -   [IoT Flow JavaScript driver developer guide](#IoT-Flow-JavaScript-driver-developer-guide)
-    -   [Concepts](#concepts)
+    - [Concepts](#concepts)
         -   [Driver](#driver)
         -   [Thing](#thing)
         -   [Point](#point)
@@ -24,9 +24,10 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
         - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
     - [Testing](#testing)
-    -   [Examples](#examples)
-        -   [Simple driver](#simple-driver)
-        -   [Advanced driver](#advanced-driver)
+    - [Examples](#examples)
+        - [Simple driver](#simple-driver)
+        - [Advanced driver](#advanced-driver)
+    - [Submission](#submission)
 
 ## Concepts
 
@@ -520,3 +521,7 @@ the creation of a driver for a fictive device exposing a temperature, humidity a
 If your device payload is complex and requires several source code files to increase readability and maintainability you
 can look at this example [here](examples/advanced-driver/README.md). In this tutorial, we will restart from the
 previously created driver and transform it to use several files.
+
+## Submission
+
+In order to submit your device and driver to the shared library, you can register to the [ThingPark Ignite program](https://community.thingpark.org/index.php/thingpark-ignite-program/) and [submit your code](https://community.thingpark.org/index.php/submit-your-thingpark-x-driver/).

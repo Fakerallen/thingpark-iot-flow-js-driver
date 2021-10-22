@@ -8,6 +8,8 @@ TXIF-1483 | Change points records algorithm
 
 ### Features
 
+TXIF-1541 | Add link to driver submission in the github documentation
+
 TXIF-1543 | Add link to obix documentation on github 
 
 Add Json Schema, specification, urls
