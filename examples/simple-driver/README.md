@@ -323,6 +323,10 @@ function extractPoints(input) {
 
 Here, we simply retrieve the value from the input, for example the `temperature` value is `input.message.temp` to follow the naming convention of the ontology.
 
+When the point refers to several values, its value can be an array.
+
+In case of `location` point, the point is represented in an array: `[longitude, latitude]` as shown in the example above.
+
 The names of points extracted must match the ones in `package.json` to be completed and verified with the `unitId` and `type`.
 
 ## Returning errors
