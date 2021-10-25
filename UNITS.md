@@ -9,7 +9,7 @@
 | Bit per second                        | bit/s     | double | bit/s               | dataSpeed
 | Candela                               | cd        | double | cd                  | intensity
 | Candela per square meter              | cd/m2     | double | cd/m&#178;          | brightness
-| Celsius                               | Cel       | double | "&#176;C            | temperature
+| Celsius                               | Cel       | double | &#176;C            | temperature
 | Centimeter                            | cm        | double | cm                  | distance
 | Coulomb                               | C         | double | C                   | electricCharge
 | Count per second                      | count/s   | double | count/s             | eventRate, rate
