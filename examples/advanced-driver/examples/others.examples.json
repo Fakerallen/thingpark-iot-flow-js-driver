@@ -11,12 +11,7 @@
         "points": {
             "pulseCounter": {
                 "type": "int64",
-                "records": [
-                    {
-                        "eventTime": "2020-08-02T20:00:00.000+05:00",
-                        "value": 12
-                    }
-                ]
+                "record": 12
             }
         }
     },
@@ -27,7 +22,7 @@
         "fPort": 1,
         "time": "2020-08-02T20:00:00.000+05:00",
         "data": {
-            "temperature": 31.4,
+            "temp": 31.4,
             "humidity": 31.4,
             "pulseCounter": 12
         },
@@ -35,31 +30,16 @@
             "temperature": {
                 "unitId": "Cel",
                 "type": "double",
-                "records": [
-                    {
-                        "eventTime": "2020-08-02T20:00:00.000+05:00",
-                        "value": 31.4
-                    }
-                ]
+                "record": 31.4
             },
             "humidity": {
                 "unitId": "%RH",
                 "type": "double",
-                "records": [
-                    {
-                        "eventTime": "2020-08-02T20:00:00.000+05:00",
-                        "value": 31.4
-                    }
-                ]
+                "record": 31.4
             },
             "pulseCounter": {
                 "type": "int64",
-                "records": [
-                    {
-                        "eventTime": "2020-08-02T20:00:00.000+05:00",
-                        "value": 12
-                    }
-                ]
+                "record": 12
             }
         }
     },

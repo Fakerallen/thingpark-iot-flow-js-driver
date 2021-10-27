@@ -1,7 +1,11 @@
 {
   "name": "simple-driver",
   "version": "1.0.0",
-  "description": "",
+  "description": "My simple driver",
+  "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
+  "deviceImageUrl": "https://market.thingpark.com/media/catalog/product/cache/e0c0cc57a7ea4992fdbd34d6aec6829f/r/o/roximity-detection-_-contact-tracing-starter-kit.jpg",
+  "manufacturerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
+  "providerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
   "main": "index.js",
   "scripts": {
     "test": "jest --collectCoverage"
@@ -26,6 +30,11 @@
       },
       "pulseCounter": {
         "type": "int64"
+      },
+      "airHumidity": {
+        "unitId": "%RH",
+        "type": "double",
+        "standardNaming": "unsupported"
       }
     }
   },

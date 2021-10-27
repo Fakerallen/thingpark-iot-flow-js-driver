@@ -1,6 +1,6 @@
 {
     "name": "iot-flow-js-sdk",
-    "version": "0.2.0-SNAPSHOT",
+    "version": "1.0.0-SNAPSHOT",
     "description": "ThingPark X - IoT Flow JavaScript Driver SDK",
     "author": "TPX",
     "copyright": "© 2021 Actility",

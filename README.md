@@ -6,7 +6,7 @@ A driver allows to easily integrate new devices in ThingPark X IoT Flow. With it
 how to decode uplinks/downlinks, how to encode downlinks and how to extract points.
 
 -   [IoT Flow JavaScript driver developer guide](#IoT-Flow-JavaScript-driver-developer-guide)
-    -   [Concepts](#concepts)
+    - [Concepts](#concepts)
         -   [Driver](#driver)
         -   [Thing](#thing)
         -   [Point](#point)
@@ -20,12 +20,14 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
             - [Downlink encode](#downlink-encode)
             - [Downlink decode](#downlink-decode)
             - [Points extraction](#points-extraction)
-            - [Payload examples](#payload-examples)
+        - [Payload examples](#payload-examples)
+        - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
     - [Testing](#testing)
-    -   [Examples](#examples)
-        -   [Simple driver](#simple-driver)
-        -   [Advanced driver](#advanced-driver)
+    - [Examples](#examples)
+        - [Simple driver](#simple-driver)
+        - [Advanced driver](#advanced-driver)
+    - [Submission](#submission)
 
 ## Concepts
 
@@ -46,30 +48,33 @@ More precisely, the JavaScript ES5 is used as it is simple and widely supported 
 The `thing` is the cloud representation of a device that can interact with the IoT Flow framework. It can be of two
 kinds:
 
--   A device: a physical device that uses a communication protocol (for example LoRaWAN)
+-   A device: a physical device that uses a communication protocol (for example LoRaWAN).
 -   A "virtual" device: some application running on an appliance that acts like a physical device or which represents an
-    aggregated view of several devices (for example an aggregated temperature)
+    aggregated view of several devices (for example an aggregated temperature).
 
 ### Point
 
 The `point` represents a value that could be extracted from a `thing`. It maps directly with a sensor, an
 actuator or a configuration variable. It is defined by an `id`, a `unitId` and a `type`.
-The `point` extracted by the driver is composed of a list of point in time values (although most of the time there is only one of them).
-It has a mandatory `eventTime` and a `value` and/or `coordinates`.
-The `value` represents the actual value of the point at the given `eventTime` while the `coordinates` represents the
-GPS position of the `thing` at the given `eventTime`. It is possible to provide only the `coordinates` in which case it
-represents the position of the device at the provided `eventTime`
+The `point` extracted by the driver is composed of a list of point in values (although most of the time there is only one of them).
+It has a mandatory property `record` that represents the actual value of the point. 
+The `record` can be a string, number, or an array. 
+There is two cases where a record can be an array:
+- The point extracted contains different values.
+- The point extracted define a geolocation value where the first element of the array is the latitude, and the second is the longitude.
+
+The points defined in each driver must follow a predefined ontology of units if exist. You can find more information in [driver definition](#driver-definition) section.
 
 ### Application
 
 The `application` identifies a communication protocol exposed by a device. It is composed of 3 information:
 
 -   `producerId`: who specifies this communication protocol, could be either a manufacturer or an entity defining a
-    public standard. **This value must be agreed with Actility**
+    public standard. **This value must be agreed with Actility**.
 -   `moduleId`: an identifier for the communication protocol name. This value is decided by the manufacturer or the
     entity providing the public standard.
 -   `version`: the communication protocol version. This value is decided by the manufacturer or the entity providing
-    the public standard. It must only identifies the major version of the protocol
+    the public standard. It must only identifies the major version of the protocol.
 
 This information is important for ThingPark X IoT Flow framework as it allows to identify the protocol exposed by
 a device especially when several are possible for a single one.
@@ -84,9 +89,9 @@ from v3 the device is now exposing a standard ZCL (ZigBee Cluster Library) paylo
 
 In this case the `application` for pre v3 firmware devices would be:
 
--   `producerId`: `acme` (decided with Actility)
+-   `producerId`: `acme` (decided with Actility).
 -   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `1` (major version of the acme generic protocol)
+-   `version`: `1` (major version of the acme generic protocol).
 
 For post v3 firmware devices the protocol would be:
 
@@ -112,30 +117,30 @@ payload length or the LoRaWAN context. Therefore, we need to declare two `applic
 
 So for this example, the `application` for pre v4 firmware devices would be:
 
--   `producerId`: `acme` (decided with Actility)
--   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `1` (major version of the acme generic protocol)
+-   `producerId`: `acme` (decided with Actility).
+-   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company).
+-   `version`: `1` (major version of the acme generic protocol).
 
 For post v4 firmware devices the protocol would be:
 
--   `producerId`: `acme` (decided with Actility)
--   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company)
--   `version`: `2` (major version of the acme generic protocol)
+-   `producerId`: `acme` (decided with Actility).
+-   `moduleId`: `generic` (any name convenient to identify the protocol for `acme` company).
+-   `version`: `2` (major version of the acme generic protocol).
 
 ### Uplink
 
-A packet sent from the `thing` to the cloud
+A packet sent from the `thing` to the cloud.
 
 ### Downlink
 
-A packet sent from the cloud to the `thing`
+A packet sent from the cloud to the `thing`.
 
 ## API
 
 A driver is composed of 2 parts:
 
--   a static configuration defining the `driver` metadata
--   a javascript code made of four possible functions to perform the encoding and decoding tasks
+-   a static configuration defining the `driver` metadata.
+-   a javascript code made of four possible functions to perform the encoding and decoding tasks.
 
 ### Driver definition
 
@@ -151,6 +156,10 @@ Here is an example of a `driver` definition:
   "name": "example-driver",
   "version": "1.0.0",
   "description": "My example driver",
+  "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
+  "deviceImageUrl": "https://market.thingpark.com/media/catalog/product/cache/e0c0cc57a7ea4992fdbd34d6aec6829f/r/o/roximity-detection-_-contact-tracing-starter-kit.jpg",
+  "manufacturerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
+  "providerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
   "main": "index.js",
   "scripts": {
     "test": "jest --collectCoverage"
@@ -172,6 +181,11 @@ Here is an example of a `driver` definition:
       "humidity": {
         "unitId": "%RH",
         "type": "double"
+      },
+      "airHumidity": {
+        "unitId": "%RH",
+        "type": "double",
+        "standardNaming": "unsupported"
       },
       "pulseCounter": {
         "type": "int64"
@@ -198,28 +212,46 @@ In addition, we declare `driver.description` equal to `An example driver that is
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 
 The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
-for a complete description). It describes a "contract" of points that can be extracted with the `driver`. Each point can
-declare two properties:
+for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 
+The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that standard naming is unsupported. 
+[Here](UNITS.md) you can see a list of all possible points names in the property `fields` in each unit.
 
--   `type`: this is a **mandatory** property representing the point type. Possible values are:
-    -   `string`
-    -   `int64`
-    -   `double`
-    -   `boolean`
--   `unitId`: this is an optional value that represents the point unit in case its `type` is `double` or `int64`. The
-    list of possible units are defined [here](UNITS.md). If a `unitId` is missing, you can raise an issue in this project
+Our ontology/units follow the form of  [oBIX protocol](http://docs.oasis-open.org/obix/obix/v1.1/csprd01/obix-v1.1-csprd01.pdf)
+which provides an extensive database of predefined units that are represented in seven main dimensions.
+These seven dimensions are represented in SI respectively as kilogram (kg), meter (m), 
+second (sec), Kelvin (K), ampere (A), mole (mol), and candela (cd).
+
+Each point can declare three properties:
+
+- `type`: this is a **mandatory** property representing the point type. Possible values are:
+    - `string`
+    - `int64`
+    - `double`
+    - `boolean`
+    - `object`
+- `unitId`: this is an optional value that represents the point unit in case its `type` is `double`, `int64`, or `object`. The
+    list of possible units are predefined [here](UNITS.md) according to the ontology. If a `unitId` is missing, you can raise an issue in this project
     to integrate it.
+- `standardNaming`: this is an optional property that can take the value `unsupported` in case the point define a unit and does not follow 
+    the ontology concerning its `name`.
 
 Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
 
 -   `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
     `@actility/example-driver`, the scope will be removed when building it.
 -   `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
-    modifying its `driver`
+    modifying its `driver`.
 -   `description`: will be used as a short friendly name for the `driver`. It should not be very long.
 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
-`{driver.producerId}:{name-without-scope}:{major-version}`
+`{driver.producerId}:{name-without-scope}:{major-version}`.
+
+Some optional properties can be added to ease the use of the driver:
+
+- `specification`: A url that refers to the datasheet/manual of the device that corresponds to this driver.
+- `deviceImageUrl`: A url that refers to the image of the device that corresponds to this driver.
+- `manufacturerLogoUrl`: A url that refers to the logo image of the manufacturer of the device.
+- `providerLogoUrl`: A url that refers to the logo image of the provider of this driver.
 
 **Important:** There is some limitations on the length of fields in `package.json`:
 
@@ -235,7 +267,7 @@ In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
 The following sections describe the four javascript functions that a driver can declare to perform encoding and decoding
 tasks.
 
-A driver must at least declare a `decodeUplink(input)` function to be valid (see next section)
+A driver must at least declare a `decodeUplink(input)` function to be valid (see next section).
 
 #### Uplink decode
 
@@ -245,7 +277,7 @@ Uplinks are decoded by calling the following function:
 function decodeUplink(input) {...}
 ```
 
-_Note:_ _this function is required in order for the driver to be valid_
+_Note:_ _this function is required in order for the driver to be valid_.
 
 The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
 
@@ -299,7 +331,7 @@ where the `message` object is the higher-level object representing your downlink
 The function must return an object containg 2 fields:
 
 -   bytes: array of numbers as it will be sent to the device.
--   fPort: the fPort on which the downlink must be sent
+-   fPort: the fPort on which the downlink must be sent.
 
 #### Downlink decode
 
@@ -355,50 +387,15 @@ The `input` is an object provided by the IoT Flow framework that is represented 
 }
 ```
 
-The returned object is defined by the following json-schema:
-
-```json
-{
-    "type": "object",
-    "additionalProperties": {
-        "type": "object",
-        "properties": {
-            "eventTime": {
-                "type": "string",
-                "format": "date-time",
-                "required": true
-            },
-            "value": {
-                "type": ["string", "number", "boolean"],
-                "required": false
-            },
-            "coordinates": {
-                "type": "array",
-                "items": {
-                    "type": "number"
-                },
-                "required": false
-            }
-        }
-    }
-}
+The returned object must be the wrapped object from the decoded one, respecting the ontology.
 ```
-
-`value` and `coordinates` _could_ be missing on a point, one of them is actually needed, so your
-driver _must_ return either `value` or `coordinates` (as well as `eventTime`) for _every_ point.
-
 Here's an example:
 
 ```json
 {
-    "temperature": {
-        "eventTime": "2019-01-01T10:00:00+01:00",
-        "value": 31.4
-    },
-    "gps": {
-        "eventTime": "2019-01-01T10:00:00+01:00",
-        "coordinates": [48.875158, 2.333822]
-    }
+    "temperature": 31.4,
+    "location": [48.875158, 2.333822],
+    "fft": [0.32, 0.33, 0.4523, 0.4456, 0.4356]
 }
 ```
 
@@ -410,7 +407,7 @@ Several examples of uplink and downlink payloads must be declared directly in th
 
 These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development ( you can look at [here](examples/simple-driver/test/driver-examples.spec.js) ).
 
-An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/examples/humidity.examples.json) )
+An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/examples/humidity.examples.json).
 
 #### Example
 
@@ -467,22 +464,8 @@ The uplink/downlink example used is an object represented by the following json-
                     "type": "string",
                     "required": true
                 },
-                "records": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "eventTime": {
-                                "type": "string",
-                                "format": "date-time",
-                                "required": true
-                            },
-                            "value": {
-                                "type": ["string", "number", "boolean"],
-                                "required": false
-                            }
-                        }
-                    },
+                "record": {
+                    "type": ["string", "number", "boolean"],
                     "required": true
                 }
             }
@@ -497,6 +480,17 @@ The uplink/downlink example used is an object represented by the following json-
 - `points`: This field can be used in the `uplink` example if there is some values in the field `data` must be extracted
   as points.
 
+### Json Schemas
+
+The following section describes the Json Schema of the decoded payloads of the driver.
+
+As the output data from the decoding payload process is not predictable, it is better to declare Json schemas that defines the structure of this output to ease the use of driver after decoding.
+
+The Json schemas of uplink and downlink payloads must be declared directly in the driver package and especially in a directory `/json-schemas`.
+Two Json schemas can be declared following the pattern: `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
+
+An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/json-schemas). 
+
 ## Packaging
 
 To simplify the open distribution and integration with our platform, a packaging leveraging NPMs is defined.
@@ -504,7 +498,7 @@ To simplify the open distribution and integration with our platform, a packaging
 NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
 clear code layout that can be distributed independently using the developer preferred version control tool.
 
-You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md)
+You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md).
 
 ## Testing
 
@@ -526,4 +520,8 @@ the creation of a driver for a fictive device exposing a temperature, humidity a
 
 If your device payload is complex and requires several source code files to increase readability and maintainability you
 can look at this example [here](examples/advanced-driver/README.md). In this tutorial, we will restart from the
-previously created driver and transform it to use several files
+previously created driver and transform it to use several files.
+
+## Submission
+
+In order to submit your device and driver to the shared library, you can register to the [ThingPark Ignite program](https://community.thingpark.org/index.php/thingpark-ignite-program/) and [submit your code](https://community.thingpark.org/index.php/submit-your-thingpark-x-driver/).

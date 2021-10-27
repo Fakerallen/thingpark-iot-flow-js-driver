@@ -34,7 +34,27 @@ After completing all the information requested by npm you will find a new file `
 {
     "name": "simple-driver",
     "version": "1.0.0",
-    "description": "",
+    "description": "My simple driver",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
+```
+
+You can add some additional properties to ease the use of the driver. The `package.json` file will be in this form:
+
+```json
+{
+    "name": "simple-driver",
+    "version": "1.0.0",
+    "description": "My simple driver",
+    "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
+    "deviceImageUrl": "https://market.thingpark.com/media/catalog/product/cache/e0c0cc57a7ea4992fdbd34d6aec6829f/r/o/roximity-detection-_-contact-tracing-starter-kit.jpg",
+    "manufacturerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
+    "providerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -50,7 +70,11 @@ Add the `driver` object (see [here](#driver-definition)) to the `package.json` f
 {
     "name": "simple-driver",
     "version": "1.0.0",
-    "description": "",
+    "description": "My simple driver",
+    "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
+    "deviceImageUrl": "https://market.thingpark.com/media/catalog/product/cache/e0c0cc57a7ea4992fdbd34d6aec6829f/r/o/roximity-detection-_-contact-tracing-starter-kit.jpg",
+    "manufacturerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
+    "providerLogoUrl": "https://www.actility.com/wp-content/uploads/2019/04/Actility_LOGO_color_RGB_WEB.png",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -91,7 +115,7 @@ function decodeUplink(input) {
                 }
                 var tmp = (bytes[i + 1] << 8) | bytes[i + 2];
                 tmp = readShort(tmp);
-                result.temperature = tmp / 100;
+                result.temp = tmp / 100;
                 i += 2;
                 break;
             // Humidity - 2 bytes
@@ -222,7 +246,7 @@ and extract points from our payloads.
 As described [here](#point), a thing can have zero or more attributes, and the attributes that you want to extract as points must
 be first statically declared on the `package.json` file.
 
-So lets add both `temperature` and `pulseCounter` points to our package (inside the `driver` object):
+So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumidity` points to our package (inside the `driver` object):
 
 ```json
 {
@@ -249,16 +273,30 @@ So lets add both `temperature` and `pulseCounter` points to our package (inside 
                 "unitId": "Cel",
                 "type": "double"
             },
+            "humidity": {
+                "unitId": "%RH",
+                "type": "double"
+            },
             "pulseCounter": {
                 "type": "int64"
+            },
+            "airHumidity": {
+                "unitId": "%RH",
+                "type": "double",
+                "standardNaming": "unsupported"
             }
         }
     }
 }
 ```
 
-As explained in [Point](#point) section, a point can contain a `unitId`, which represents its unit (see [Units]()) and a `type` (see [Point types]()).
-In this case we have two `points` (or "containers") where our values will be grouped: `temperature` which is of type `double` and has unit `Celsius`, and `pulseCounter` which has type `int64` and has no unit because it is a counter.
+As explained in [Point](#point) section, a point can contain a `unitId`, which represents its unit (see [Units]()) and a `type` (see [Point types]()). 
+A `standardNaming` property can be added with the value `unsupported` in case the point uses a unit that does not follow the ontology.
+In this case we have two `points` (or "containers") where our values will be grouped: 
+- `temperature` which is of type `double` and has unit `Celsius`.
+- `humidty` which is of type `double` and has unit `%RH`.
+- `pulseCounter` which has type `int64` and has no unit because it is a counter.
+- `airHumidty` which is of type `double` and has unit `%RH` and it is standard naming `unsupported`.
 
 After having defined the points' "contract", we can now add the `extractPoints(input)` function that will implement it.
 
@@ -267,30 +305,29 @@ Add the following function in `index.js`:
 ```javascript
 function extractPoints(input) {
     var result = {};
-    if (typeof input.message.temperature !== "undefined") {
-        result.temperature = {
-            eventTime: input.time,
-            value: input.message.temperature,
-        };
+    if (typeof input.message.temp !== "undefined") {
+        result.temperature = input.message.temp;
     }
     if (typeof input.message.humidity !== "undefined") {
-        result.humidity = {
-            eventTime: input.time,
-            value: input.message.humidity,
-        };
+        result.humidity = input.message.humidity;
     }
     if (typeof input.message.pulseCounter !== "undefined") {
-        result.pulseCounter = {
-            eventTime: input.time,
-            value: input.message.pulseCounter,
-        };
+        result.pulseCounter = input.message.pulseCounter;
+    }
+    if (typeof input.message.humidity !== "undefined") {
+        result.airHumidity = input.message.humidity;
     }
     return result;
 }
 ```
 
-As you can see, the `input.time` is required so you can set the `eventTime` field on each point. Here, we simply retrieve
-the value from the input, for example the `temperature` value is `input.message.temperature`.
+Here, we simply retrieve the value from the input, for example the `temperature` value is `input.message.temp` to follow the naming convention of the ontology.
+
+When the point refers to several values, its value can be an array.
+
+In case of `location` point, the point is represented in an array: `[longitude, latitude]` as shown in the example above.
+
+The names of points extracted must match the ones in `package.json` to be completed and verified with the `unitId` and `type`.
 
 ## Returning errors
 
@@ -308,7 +345,7 @@ _Note: All throws that do not throw an `Error` object will be ignored by the IoT
 
 We use [Jest](https://jestjs.io/) as our testing framweork.
 
-_Note: when testing, you will need to export the functions that you test (unless of course you copy / paste the functions into the testing file). This is *not* needed in your driver if not tested_
+_Note: when testing, you will need to export the functions that you test (unless of course you copy / paste the functions into the testing file). This is *not* needed in your driver if not tested_.
 
 To exports functions, you can add the following at the end of the `index.js` file:
 
@@ -337,7 +374,7 @@ First, you need to add the `test` script in the `package.json`:
   }
 ```
 
-Then, you will be able to launch tests using command `npm test`
+Then, you will be able to launch tests using command `npm test`.
 
 ### Create files
 
@@ -443,8 +480,6 @@ The error example used to test `encodeDownlink`/`extractPoints` function is an o
     }
 ```
 
-#
-
 **Important:** `description` field must be unique.
 
 
@@ -463,7 +498,7 @@ npm test
 ```
 
 This command will give a full report about the coverage of your tests. The most important value in this report is the
-percentage of the statements coverage which appears under `stmts`.
+percentage of the statements' coverage which appears under `stmts`.
 
 To execute a specific test, you can add the name of the test file in the command:
 
@@ -471,6 +506,48 @@ To execute a specific test, you can add the name of the test file in the command
 npm test driver-examples.spec.js
 ```
 
+### Add Json Schemas 
+
+To provide the json schemas of your driver, you must create the directory `/json-schemas`. 
+
+Under the directory `/json-schemas`, create a file named `uplink.schema.json` and add the following json schema that describes the structure of the `decodeUplink` output:
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "temperature": {
+      "type": "number"
+    },
+    "humidity": {
+      "type": "number"
+    },
+    "pulseCounter": {
+      "type": "number"
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+Under the same directory `/json-schemas`, create a file named `downlink.schema.json` and add the following json schema that describes the structure of the `decodeDownlink` output:
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "pulseCounterThreshold": {
+      "type": "integer"
+    },
+    "alarm": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
+```
 ### Create a tarball from the package
 
 To create a tarball from the already defined package, you must use the following command:
