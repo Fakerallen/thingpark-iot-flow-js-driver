@@ -1,6 +1,6 @@
 | Unit                                  | unitId    | type   | symbol              | fields
 | ------------------------------------- | --------- | ------ | ------------------- | -------------------
-| Gps                                   | Gps       | object | Gps                 | location
+| GPS                                   | GPS       | object | GPS                 | location
 | Ampere                                | A         | double | A                   | current
 | Bar                                   | bar       | double | bar                 | pressure
 | Becquerel                             | Bq        | double | Bq                  | radioactivity
