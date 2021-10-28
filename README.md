@@ -168,6 +168,7 @@ Here is an example of a `driver` definition:
     "description": "An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
     "producerId": "actility",
     "type": "thingpark-x-js",
+    "private": false,
     "application": {
       "producerId": "myProducer",
       "moduleId": "myModule",
@@ -208,6 +209,8 @@ kind of driver it is as it supports several formats. In this documentation we on
 format therefore the `driver.type` must be set to this value.
 
 In addition, we declare `driver.description` equal to `An example driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter`. This allows the user to see a brief description of the driver. Be careful, this driver description differs from the NPM property `description` (which is described below), this one provides a full description and can be longer than the short friendly name of the driver.
+
+In order to protect your driver code from being visible, you can declare `driver.private` to be `true`, else your driver code is visible in our platform.
 
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 

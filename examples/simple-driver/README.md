@@ -85,6 +85,7 @@ Add the `driver` object (see [here](#driver-definition)) to the `package.json` f
         "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
         "producerId": "my-driver-producer",
         "type": "thingpark-x-js",
+        "private": false,
         "application": {
             "producerId": "my-app-producer",
             "moduleId": "my-app-module",
@@ -263,6 +264,7 @@ So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumid
         "description": "An example of a simple driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
         "producerId": "my-driver-producer",
         "type": "thingpark-x-js",
+        "private": false,
         "application": {
             "producerId": "my-app-producer",
             "moduleId": "my-app-module",

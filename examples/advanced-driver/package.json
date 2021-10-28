@@ -15,6 +15,7 @@
     "description": "An example of an advanced driver that is able to decode/encode data from temperature and humidity sensors with a pulse counter",
     "producerId": "actility",
     "type": "thingpark-x-js",
+    "private": false,
     "application": {
       "producerId": "myProducer",
       "moduleId": "myModule",
