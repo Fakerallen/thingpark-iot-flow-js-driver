@@ -74,8 +74,8 @@
 | Nephelometric turbidity               | ntu       | double | ntu                 | nephelometricTurbidity, turbidity
 | Okta                                  | okta      | int64  | okta                | cloudCover, cover
 | Ohm                                   | Ohm       | double | &#8486;             | resistance
-| Parts per billion                     | ppb       | double | ppb                 | amount, quantity, concentration
-| Parts per million                     | ppm       | double | ppm                 | amount, quantity, concentration
+| Parts per billion                     | ppb       | double | ppb                 | amount, quantity, concentration, co2Level
+| Parts per million                     | ppm       | double | ppm                 | amount, quantity, concentration, co2Level
 | Pascal                                | Pa        | double | Pa                  | pressure
 | Percentage                            | %         | double | %                   | batteryLevel, percentage
 | Percentage relative humidity          | %RH       | double | %RH                 | humidity
