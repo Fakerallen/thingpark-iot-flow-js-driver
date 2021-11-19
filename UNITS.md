@@ -28,7 +28,7 @@
 | Fahrenheit                            | Far       | double | &#176;F             | temperature
 | Farad                                 | F         | double | F                   | capacitance
 | Gigawatt                              | GW        | double | GW                  | power
-| Gram                                  | g         | double | g                   | mass
+| Gram                                  | g         | double | g                   | mass, weight
 | Acceleration compared to earth gravity| gravity   | double | G                   | acceleration, vibration
 | Gray                                  | Gy        | double | Gy                  | radiation
 | Hectopascal                           | hPa       | double | hPa                 | pressure
@@ -37,7 +37,7 @@
 | Joule                                 | J         | double | J                   | energy
 | Katal                                 | kat       | double | kat                 | catalyticActivity
 | Kelvin                                | K         | double | K                   | temperature
-| Kilogram                              | kg        | double | kg                  | mass
+| Kilogram                              | kg        | double | kg                  | mass, weight
 | Kilometer                             | km        | double | km                  | distance
 | Kilometer per hour                    | km/h      | double | km/h                | velocity, speed
 | Kilopascal                            | kPa       | double | kPa                 | pressure
@@ -45,15 +45,15 @@
 | Kilowatthour                          | kWh       | double | kWh                 | energy
 | Liter                                 | l         | double | l                   | volume, capacity
 | Liter per second                      | l/s       | double | l/s                 | flowRate
-| Lumen                                 | lm        | double | lm                  | flux
-| Lux                                   | lx        | double | lx                  | flux
+| Lumen                                 | lm        | double | lm                  | flux, illuminance, light
+| Lux                                   | lx        | double | lx                  | flux, illuminance
 | Megawatt                              | MW        | double | MW                  | power
 | Megawatthour                          | MWh       | double | MWh                 | energy
 | Megawatt per minute                   | MW/m      | double | MW/m                | powerRate
 | Meter                                 | m         | double | m                   | distance
 | Meter per second                      | m/s       | double | m/s                 | velocity, speed
 | Meter per square second               | m/s2      | double | m/s&#178;           | acceleration, vibration
-| Microgram                             | ug        | double | &#181;g             | mass
+| Microgram                             | ug        | double | &#181;g             | mass, weight
 | Microgram per cubic meter             | ug/m3     | double | &#181;g/m&#179;     | concentration
 | Micrometer                            | um        | double | &#181;m             | distance
 | Micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity
@@ -95,10 +95,10 @@
 | Volt-Ampere hour                      | VAh       | double | VAh                 | apparentEnergy
 | Volt-Ampere reactive                  | var       | double | var                 | reactivePower
 | Volt-Ampere reactive hour             | varh      | double | varh                | reactiveEnergy
-| Volt                                  | V         | double | V                   | batterVoltage
+| Volt                                  | V         | double | V                   | batteryVoltage
 | Watt                                  | W         | double | W                   | power
 | Watt per hour                         | W/h       | double | W/h                 | powerRate
 | Watt per second                       | W/s       | double | W/s                 | powerRate
-| Watt per square meter                 | W/m2      | double | W/m&#178;           | irradiance
+| Watt per square meter                 | W/m2      | double | W/m&#178;           | irradiance, solarRadiation
 | Watthour                              | Wh        | double | Wh                  | energy
 | Weber                                 | Wb        | double | Wb                  | magneticFlux
