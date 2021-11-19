@@ -33,6 +33,21 @@ function decodeUplink(input) {
                 result.pulseCounter = bytes[i + 1];
                 i += 1;
                 break;
+            // Volumes with different eventTime - 2 bytes
+            case 0x03:
+                result.volumes = [];
+                var volume1 = util.readShort(bytes[i+1]);
+                result.volumes.push({
+                    time: new Date("2020-08-02T20:00:00.000+05:00").toISOString(),
+                    volume: volume1
+                });
+                var volume2 = util.readShort(bytes[i+2]);
+                result.volumes.push({
+                    time: new Date("2020-08-02T21:00:00.000+05:00").toISOString(),
+                    volume: volume2
+                });
+                i+=2;
+                break;
             default:
                 throw new Error("Invalid uplink payload: unknown id '" + bytes[i] + "'");
         }
@@ -103,6 +118,17 @@ function extractPoints(input) {
     if (typeof input.message.humidity !== "undefined") {
         result.airHumidity = input.message.humidity;
     }
+    let volumes = input.message.volumes;
+    if (typeof volumes !== "undefined") {
+        result.volume = [];
+        volumes.forEach(element => {
+            result.volume.push({
+                eventTime: element.time,
+                value: element.volume
+            })
+        });
+    }
+
     return result;
 }
 

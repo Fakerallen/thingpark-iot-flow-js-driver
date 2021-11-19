@@ -37,6 +37,10 @@
         "unitId": "%RH",
         "type": "double",
         "standardNaming": "unsupported"
+      },
+      "volume": {
+        "unitId": "l",
+        "type": "double"
       }
     }
   },

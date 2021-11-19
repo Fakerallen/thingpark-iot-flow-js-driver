@@ -57,11 +57,19 @@ kinds:
 The `point` represents a value that could be extracted from a `thing`. It maps directly with a sensor, an
 actuator or a configuration variable. It is defined by an `id`, a `unitId` and a `type`.
 The `point` extracted by the driver is composed of a list of point in values (although most of the time there is only one of them).
-It has a mandatory property `record` that represents the actual value of the point. 
+
+One of two properties `record` or `records` must present according to your needs.
+
+`record` that represents the actual value of the point. 
 The `record` can be a string, number, or an array. 
 There is two cases where a record can be an array:
 - The point extracted contains different values.
 - The point extracted define a geolocation value where the first element of the array is the latitude, and the second is the longitude.
+
+`records` represents different values of the same point, in different timestamp.
+`records` is an array of `object` where each object has a mandatory `eventTime` and a `value` .
+The `value` represents the actual value of the point at the given `eventTime`.
+
 
 The points defined in each driver must follow a predefined ontology of units if exist. You can find more information in [driver definition](#driver-definition) section.
 
@@ -390,15 +398,57 @@ The `input` is an object provided by the IoT Flow framework that is represented 
 }
 ```
 
-The returned object must be the wrapped object from the decoded one, respecting the ontology.
-```
+The returned object must be:
+- The wrapped object from the decoded one in case all the event are done at the same time, respecting the ontology.
 Here's an example:
-
 ```json
 {
     "temperature": 31.4,
     "location": [48.875158, 2.333822],
     "fft": [0.32, 0.33, 0.4523, 0.4456, 0.4356]
+}
+```
+- OR, it is defined by the following json-schema in case the point has several values in different timestamp.
+
+```json
+{
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "eventTime": {
+          "type": "string",
+          "format": "date-time",
+          "required": true
+        },
+        "value": {
+          "type": ["string", "number", "boolean"],
+          "required": false
+        }
+      }
+    }
+  }
+}
+```
+Here's an example:
+```json
+{
+  "temperature": [
+    {
+      "eventTime": "2019-01-01T10:00:00+01:00",
+      "value": 31.4
+    },
+    {
+      "eventTime": "2019-01-01T11:00:00+01:00",
+      "value": 31.2
+    },
+    {
+      "eventTime": "2019-01-01T12:00:00+01:00",
+      "value": 32
+    }
+  ]
 }
 ```
 
@@ -469,8 +519,26 @@ The uplink/downlink example used is an object represented by the following json-
                 },
                 "record": {
                     "type": ["string", "number", "boolean"],
-                    "required": true
-                }
+                    "required": false
+                },
+                "records": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "eventTime": {
+                          "type": "string",
+                          "format": "date-time",
+                          "required": true
+                        }, 
+                        "value": {
+                          "type": ["string", "number", "boolean"],
+                          "required": false
+                        }
+                      }
+                },
+                "required": false
+              }
             }
         }
     }

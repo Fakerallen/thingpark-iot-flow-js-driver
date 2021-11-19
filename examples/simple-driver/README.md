@@ -134,6 +134,20 @@ function decodeUplink(input) {
                 result.pulseCounter = bytes[i + 1];
                 i += 1;
                 break;
+            case 0x03:
+                result.volumes = [];
+                var volume1 = readShort(bytes[i+1]);
+                result.volumes.push({
+                    time: new Date("2020-08-02T20:00:00.000+05:00").toISOString(),
+                    volume: volume1
+                });
+                var volume2 = readShort(bytes[i+2]);
+                result.volumes.push({
+                    time: new Date("2020-08-02T21:00:00.000+05:00").toISOString(),
+                    volume: volume2
+                });
+                i+=2;
+                break;
             default:
                 throw new Error("Invalid uplink payload: unknown id '" + bytes[i] + "'");
         }
@@ -286,6 +300,10 @@ So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumid
                 "unitId": "%RH",
                 "type": "double",
                 "standardNaming": "unsupported"
+            },
+            "volume": {
+                "unitId": "l",
+                "type": "double"
             }
         }
     }
@@ -318,6 +336,16 @@ function extractPoints(input) {
     }
     if (typeof input.message.humidity !== "undefined") {
         result.airHumidity = input.message.humidity;
+    }
+    let volumes = input.message.volumes;
+    if (typeof volumes !== "undefined") {
+        result.volume = [];
+        volumes.forEach(element => {
+            result.volume.push({
+                eventTime: element.time,
+                value: element.volume
+            })
+        });
     }
     return result;
 }
@@ -527,6 +555,26 @@ Under the directory `/json-schemas`, create a file named `uplink.schema.json` an
     },
     "pulseCounter": {
       "type": "number"
+    },
+    "volumes": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "time": {
+              "type": "string"
+            },
+            "volume": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "time",
+            "volume"
+          ]
+        }
+      ]
     }
   },
   "additionalProperties": false

@@ -2,10 +2,10 @@
     {
         "description": "fail decode uplink containing only humidity",
         "type": "uplink",
-        "bytes": "03aa",
+        "bytes": "04aa",
         "fPort": 1,
         "time": "2020-08-02T20:00:00.000+05:00",
-        "error": "Invalid uplink payload: unknown id '3'"
+        "error": "Invalid uplink payload: unknown id '4'"
     },
     {
         "description": "fail decode uplink when payload contains humidity index out of bounds",
