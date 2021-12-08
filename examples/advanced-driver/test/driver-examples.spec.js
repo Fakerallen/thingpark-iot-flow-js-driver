@@ -118,8 +118,10 @@ describe("Extract points", () => {
                     if(packageJson.driver.points[point] != null){
                         const expectedPoint = packageJson.driver.points[point];
                         if(Array.isArray(result[point]) && typeof result[point][0] == "object"){
+                            delete expectedPoint.record;
                             expectedPoint.records = result[point];
                         } else {
+                            delete expectedPoint.records;
                             expectedPoint.record = result[point];
                         }
 
