@@ -77,7 +77,7 @@
 | Parts per billion                     | ppb       | double | ppb                 | amount, quantity, concentration, co2Level
 | Parts per million                     | ppm       | double | ppm                 | amount, quantity, concentration, co2Level
 | Pascal                                | Pa        | double | Pa                  | pressure
-| Percentage                            | %         | double | %                   | batteryLevel, percentage
+| Percentage                            | %         | double | %                   | batteryLevel, percentage, per
 | Percentage relative humidity          | %RH       | double | %RH                 | humidity
 | pH                                    | pH        | double | pH                  | acidity
 | Pulse per hour                        | pulse/h   | double | pulse/h             | frequency, sound
