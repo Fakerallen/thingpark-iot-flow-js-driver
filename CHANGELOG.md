@@ -1,3 +1,31 @@
+## 1.1.1
+
+### Breaking change
+
+N/A
+
+### Features
+
+N/A
+
+### Bugfixes
+
+External libraries are not allowed
+
+## 1.1.0
+
+### Breaking change
+
+N/A
+
+### Features
+
+Support new ontology/points
+
+### Bugfixes
+
+N/A
+
 ## 1.0.0
 
 ### Breaking change
