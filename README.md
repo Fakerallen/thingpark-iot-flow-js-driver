@@ -234,25 +234,28 @@ second (sec), Kelvin (K), ampere (A), mole (mol), and candela (cd).
 
 Each point can declare three properties:
 
-- `type`: this is a **mandatory** property representing the point type. Possible values are:
-    - `string`
-    - `int64`
-    - `double`
-    - `boolean`
-    - `object`
+- `type`: this is a **mandatory** property representing the [point type](#point-types). 
 - `unitId`: this is an optional value that represents the point unit in case its `type` is `double`, `int64`, or `object`. The
     list of possible units are predefined [here](UNITS.md) according to the ontology. If a `unitId` is missing, you can raise an issue in this project
     to integrate it.
 - `standardNaming`: this is an optional property that can take the value `unsupported` in case the point define a unit and does not follow 
     the ontology concerning its `name`.
 
+###### Point types
+The only possible values for a point type are:
+- `string`
+- `int64`
+- `double`
+- `boolean`
+- `object`
+
 Some regular NPM properties in `package.json` are also leveraged by ThingPark X IoT Flow framework. These are:
 
--   `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
+- `name`: will be used as a module identifier for the `driver`. If you are using an NPM scope in the form
     `@actility/example-driver`, the scope will be removed when building it.
--   `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
+- `version`: will be used as the `driver` version. Therefore, developer is required to build a new version when
     modifying its `driver`.
--   `description`: will be used as a short friendly name for the `driver`. It should not be very long.
+- `description`: will be used as a short friendly name for the `driver`. It should not be very long.
 
 In ThingPark X IoT Flow framework the unique identifier for the `driver` will be
 `{driver.producerId}:{name-without-scope}:{major-version}`.
@@ -264,6 +267,7 @@ Some optional properties can be added to ease the use of the driver:
 - `manufacturerLogoUrl`: A url that refers to the logo image of the manufacturer of the device.
 - `providerLogoUrl`: A url that refers to the logo image of the provider of this driver.
 
+#### Limitations on length of fields
 **Important:** There is some limitations on the length of fields in `package.json`:
 
 -   `name` must be a string of maximum 16 characters.

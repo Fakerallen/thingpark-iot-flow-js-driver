@@ -95,6 +95,8 @@ Add the `driver` object (see [here](../../README.md#driver-definition)) to the `
 }
 ```
 
+***Important:*** make sure to respect the constraints on the length of some fields. [Here](../../README.md#limitations-on-length-of-fields) you can find the details.
+
 Now that we have a valid npm project, we will create the driver itself. Open a new file named `index.js` where we will
 define only an uplink decode:
 
@@ -313,7 +315,7 @@ So let's add the points `temperature`, `humidity`, `pulseCounter`, and `airHumid
 }
 ```
 
-As explained in [Point](../../README.md#point) section, a point can contain a `unitId`, which represents its unit (see [Units]()) and a `type` (see [Point types]()). 
+As explained in [Point](../../README.md#point) section, a point can contain a `unitId`, which represents its unit (see [Units](../../UNITS.md)) and a `type` (see [Point types](../../README.md#point-types)). 
 A `standardNaming` property can be added with the value `unsupported` in case the point uses a unit that does not follow the ontology.
 In this case we have two `points` (or "containers") where our values will be grouped: 
 - `temperature` which is of type `double` and has unit `Celsius`.
