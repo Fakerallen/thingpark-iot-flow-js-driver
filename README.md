@@ -24,7 +24,7 @@ how to decode uplinks/downlinks, how to encode downlinks and how to extract poin
         - [Json schemas](#json-schemas)
     - [Packaging](#packaging)
     - [Testing](#testing)
-    - [Examples](#examples)
+    - [Templates](#templates)
         - [Simple driver](#simple-driver)
         - [Advanced driver](#advanced-driver)
     - [Submission](#submission)
@@ -222,7 +222,7 @@ In order to protect your driver code from being visible, you can declare `driver
 
 This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
 
-The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#point-extraction)
+The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#points-extraction)
 for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 
 The name of the point must follow the ontology naming convention if a `unitId` defined, unless it is declared that standard naming is unsupported. 
 [Here](UNITS.md) you can see a list of all possible points names in the property `fields` in each unit.
@@ -458,9 +458,9 @@ The following section describes the examples of the payloads of the driver.
 
 Several examples of uplink and downlink payloads must be declared directly in the driver package and especially in a directory `/example`. The name of each examples file must follow the pattern `*.examples.json`. You can split and organize the examples files according to your own logic.
 
-These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development ( you can look at [here](examples/simple-driver/test/driver-examples.spec.js) ).
+These examples will be used in order to provide for the users of the driver some examples of the payload to be decoded/encoded to test the driver. In addition, it will be used to facilitate the testing of the driver while development ( you can look at [here](templates/simple-driver/test/driver-examples.spec.js) ).
 
-An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/examples/humidity.examples.json).
+An `*.examples.json` file contains an array of several uplink/downlink examples. You can find an example of this file in the driver example [here](templates/simple-driver/examples/humidity.examples.json).
 
 #### Example
 
@@ -560,7 +560,7 @@ As the output data from the decoding payload process is not predictable, it is b
 The Json schemas of uplink and downlink payloads must be declared directly in the driver package and especially in a directory `/json-schemas`.
 Two Json schemas can be declared following the pattern: `uplink.schema.json` for uplink data, and `downlink.schema.json` for downlink data if supported.
 
-An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](examples/simple-driver/json-schemas). 
+An `*.schema.json` file contains a generic json schema for all types of payload decoded by this driver of several uplink/downlink examples. You can find an example of this file in the driver example [here](templates/simple-driver/json-schemas). 
 
 ## Packaging
 
@@ -569,28 +569,28 @@ To simplify the open distribution and integration with our platform, a packaging
 NPM was chosen because it is the most widely used packaging system for JavaScript code. Also, this approach defines a
 clear code layout that can be distributed independently using the developer preferred version control tool.
 
-You can find a full description of packaging in the README file of simple driver [here](examples/simple-driver/README.md).
+You can find a full description of packaging in the README file of simple driver [here](templates/simple-driver/README.md).
 
 ## Testing
 
 Testing your driver is a very important process, thus the user is highly encouraged to test the driver in most possible
 use cases as well as error cases.
 
-You can find a full example of tests [here](examples/simple-driver/test).
+You can find a full example of tests [here](templates/simple-driver/test).
 
 **Important:** The test of your driver is needed to prove a minimum test coverage of 85% to be valid on our framework.
 
-## Examples
+## Templates
 
 ### Simple driver
 
-You will find [here](examples/simple-driver/README.md) a tutorial explaining how to create your first driver. It follows
+You will find [here](templates/simple-driver/README.md) a tutorial explaining how to create your first driver. It follows
 the creation of a driver for a fictive device exposing a temperature, humidity and a pulse counter.
 
 ### Advanced driver
 
 If your device payload is complex and requires several source code files to increase readability and maintainability you
-can look at this example [here](examples/advanced-driver/README.md). In this tutorial, we will restart from the
+can look at this example [here](templates/advanced-driver/README.md). In this tutorial, we will restart from the
 previously created driver and transform it to use several files.
 
 ## Submission
