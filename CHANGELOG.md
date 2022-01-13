@@ -1,3 +1,19 @@
+## 1.1.2
+
+### Breaking change
+
+N/A
+
+### Features
+
+N/A
+
+### Bugfixes
+
+TXIF-1747 | Automatic test script does not throw error when missing point
+
+TXIF-1746 | Links in github documentation must be maintained
+
 ## 1.1.1
 
 ### Breaking change
