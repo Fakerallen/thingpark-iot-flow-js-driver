@@ -10,7 +10,7 @@
 | Candela                               | cd        | double | cd                  | intensity
 | Candela per square meter              | cd/m2     | double | cd/m&#178;          | brightness
 | Celsius                               | Cel       | double | &#176;C            | temperature
-| Centimeter                            | cm        | double | cm                  | distance
+| Centimeter                            | cm        | double | cm                  | distance, accuracy, range
 | Coulomb                               | C         | double | C                   | electricCharge
 | Count per second                      | count/s   | double | count/s             | eventRate, rate
 | Count per minute                      | count/min | double | count/min           | eventRate, rate
@@ -38,7 +38,7 @@
 | Katal                                 | kat       | double | kat                 | catalyticActivity
 | Kelvin                                | K         | double | K                   | temperature
 | Kilogram                              | kg        | double | kg                  | mass, weight
-| Kilometer                             | km        | double | km                  | distance
+| Kilometer                             | km        | double | km                  | distance, accuracy, range
 | Kilometer per hour                    | km/h      | double | km/h                | velocity, speed
 | Kilopascal                            | kPa       | double | kPa                 | pressure
 | Kilowatt                              | kW        | double | kW                  | power
@@ -50,25 +50,25 @@
 | Megawatt                              | MW        | double | MW                  | power
 | Megawatthour                          | MWh       | double | MWh                 | energy
 | Megawatt per minute                   | MW/m      | double | MW/m                | powerRate
-| Meter                                 | m         | double | m                   | distance
+| Meter                                 | m         | double | m                   | distance, accuracy, range
 | Meter per second                      | m/s       | double | m/s                 | velocity, speed
 | Meter per square second               | m/s2      | double | m/s&#178;           | acceleration, vibration
 | Microgram                             | ug        | double | &#181;g             | mass, weight
 | Microgram per cubic meter             | ug/m3     | double | &#181;g/m&#179;     | concentration
-| Micrometer                            | um        | double | &#181;m             | distance
+| Micrometer                            | um        | double | &#181;m             | distance, accuracy, range
 | Micromole per second and square meter | umol/m2.s | double | &#181;mol/m&#178;.s | fluxDensity, intensity
 | Microsiemens per centimeter           | uS/cm     | double | &#181;S/cm          | conductivity
 | Microvolt                             | uV        | double | uV                  | batteryVoltage
 | Milliampere                           | mA        | double | mA                  | current
 | Millibar                              | mbar      | double | mbar                | pressure
 | Milliliter                            | ml        | double | ml                  | volume, capacity
-| Millimeter                            | mm        | double | mm                  | distance
+| Millimeter                            | mm        | double | mm                  | distance, accuracy, range
 | Millimeter per second                 | mm/s      | double | mm/s                | velocity, speed
 | Millimeter per hour                   | mm/h      | double | mm/h                | velocity, speed
-| Millisecond                           | ms        | double | ms                  | time, duration
+| Millisecond                           | ms        | double | ms                  | time, duration, interval
 | Millisiemens per centimeter           | mS/cm     | double | mS/cm               | conductivity
 | Millivolt                             | mV        | double | mV                  | batteryVoltage
-| Minute                                | minute    | double | min                 | time, duration
+| Minute                                | minute    | double | min                 | time, duration, interval
 | Mole                                  | mol       | double | mol                 | amount, quantity
 | Newton                                | N         | double | N                   | force
 | Nephelometric turbidity               | ntu       | double | ntu                 | nephelometricTurbidity, turbidity
@@ -84,7 +84,7 @@
 | Radian                                | rad       | double | rad                 | angle
 | Rate                                  | /         | double | rate                | rate
 | Rotations per minute                  | rpm       | double | rpm                 | angularVelocity
-| Second                                | s         | double | s                   | time, duration
+| Second                                | s         | double | s                   | time, duration, interval
 | Siemens                               | S         | double | S                   | conductance
 | Siemens per meter                     | S/m       | double | S/m                 | conductivity
 | Sievert                               | Sv        | double | Sv                  | radiationEffect
