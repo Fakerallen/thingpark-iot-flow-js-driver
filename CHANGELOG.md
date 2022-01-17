@@ -1,3 +1,17 @@
+## 1.1.3
+
+### Breaking change
+
+N/A
+
+### Features
+
+N/A
+
+### Bugfixes
+
+TXIF-1775 | mAh unit is missing on ontology
+
 ## 1.1.2
 
 ### Breaking change
