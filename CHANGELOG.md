@@ -10,7 +10,7 @@ N/A
 
 ### Bugfixes
 
-TXIF-1775 | mAh unit is missing on ontology
+TXIF-1775 | units missing on ontology
 
 ## 1.1.2
 
