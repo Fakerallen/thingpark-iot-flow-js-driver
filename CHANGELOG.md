@@ -1,3 +1,19 @@
+## 1.1.4
+
+### Breaking change
+
+N/A
+
+### Features
+
+N/A
+
+### Bugfixes
+
+Added missing fields
+
+Enhance extractPoints automated tests
+
 ## 1.1.3
 
 ### Breaking change
