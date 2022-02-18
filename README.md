@@ -198,6 +198,10 @@ Here is an example of a `driver` definition:
       },
       "pulseCounter": {
         "type": "int64"
+      },
+      "location": {
+        "unitId": "GPS",
+        "type": "object"
       }
     }
   },
@@ -220,7 +224,7 @@ In addition, we declare `driver.description` equal to `An example driver that is
 
 In order to protect your driver code from being visible, you can declare `driver.private` to be `true`, else your driver code is visible in our platform.
 
-This driver also declares that it will extract 3 points which are: `temperature`, `humidity` and `pulseCounter`.
+This driver also declares that it will extract 6 points which are: `temperature`, `humidity` and `pulseCounter`, `airHumidity`, `location`.
 
 The `points` section is **mandatory** only when using the `extractPoints(input)` function (see [here](#points-extraction)
 for a complete description). It describes a "contract" of points that can be extracted with the `driver`. 

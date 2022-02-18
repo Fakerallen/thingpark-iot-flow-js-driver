@@ -1,4 +1,10 @@
-var util = require("./util");
+function readShort(bin) {
+    var result = bin & 0xffff;
+    if (0x8000 & result) {
+        result = -(0x010000 - result);
+    }
+    return result;
+}
 
 function decodeUplink(input) {
     var result = {};
@@ -14,7 +20,7 @@ function decodeUplink(input) {
                     throw new Error("Invalid uplink payload: index out of bounds when reading temperature");
                 }
                 var tmp = (bytes[i + 1] << 8) | bytes[i + 2];
-                tmp = util.readShort(tmp);
+                tmp = readShort(tmp);
                 result.temp = tmp / 100;
                 i += 2;
                 break;
@@ -24,7 +30,7 @@ function decodeUplink(input) {
                     throw new Error("Invalid uplink payload: index out of bounds when reading humidity");
                 }
                 var tmp = (bytes[i + 1] << 8) | bytes[i + 2];
-                tmp = util.readShort(tmp);
+                tmp = readShort(tmp);
                 result.humidity = tmp / 100;
                 i += 2;
                 break;
@@ -36,16 +42,22 @@ function decodeUplink(input) {
             // Volumes with different eventTime - 2 bytes
             case 0x03:
                 result.volumes = [];
-                var volume1 = util.readShort(bytes[i+1]);
+                var volume1 = readShort(bytes[i+1]);
                 result.volumes.push({
                     time: new Date("2020-08-02T20:00:00.000+05:00").toISOString(),
                     volume: volume1
                 });
-                var volume2 = util.readShort(bytes[i+2]);
+                var volume2 = readShort(bytes[i+2]);
                 result.volumes.push({
                     time: new Date("2020-08-02T21:00:00.000+05:00").toISOString(),
                     volume: volume2
                 });
+                i+=2;
+                break;
+            case 0x04:
+                // only an example :)
+                result.longitude = readShort(bytes[i + 1]) * 3.56;
+                result.latitude = readShort(bytes[i + 2]) * 12.56;
                 i+=2;
                 break;
             default:
@@ -127,6 +139,10 @@ function extractPoints(input) {
                 value: element.volume
             })
         });
+    }
+
+    if (typeof input.message.longitude !== "undefined" && typeof input.message.latitude !== "undefined") {
+        result.location = [input.message.longitude, input.message.latitude];
     }
 
     return result;
