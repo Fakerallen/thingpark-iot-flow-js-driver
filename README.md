@@ -161,7 +161,7 @@ Here is an example of a `driver` definition:
 
 ```json
 {
-  "name": "example-driver",
+  "name": "@actility/example-driver",
   "version": "1.0.0",
   "description": "My example driver",
   "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
@@ -210,6 +210,7 @@ Here is an example of a `driver` definition:
   }
 }
 ```
+The name of the package is scoped by the producerId which is `actility` in the example above, feel free to change it according to your `driver.producerId`.
 
 Here we declare a `driver.producerId` equal to `actility`. It means the `driver` is developed by Actility and it
 implements a communication protocol (`driver.application`) coming from a fictive `myManufacturer`. Most of the time,

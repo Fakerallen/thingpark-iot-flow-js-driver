@@ -1,5 +1,5 @@
 {
-  "name": "simple-driver",
+  "name": "@actility/simple-driver",
   "version": "1.0.0",
   "description": "My simple driver",
   "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",

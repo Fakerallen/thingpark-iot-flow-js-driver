@@ -1,5 +1,5 @@
 {
-  "name": "advanced-driver",
+  "name": "@actility/advanced-driver",
   "version": "1.0.0",
   "description": "My advanced driver",
   "specification": "https://github.com/actility/thingpark-iot-flow-js-driver/blob/master/examples/simple-driver/README.md",
