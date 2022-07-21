@@ -335,18 +335,7 @@ Downlinks are encoded by calling the following function:
 function encodeDownlink(input) {...}
 ```
 
-The `input` is an object provided by the IoT Flow framework that is represented by the following json-schema:
-
-```json
-{
-    "message": {
-        "type": "object",
-        "required": true
-    }
-}
-```
-
-where the `message` object is the higher-level object representing your downlink.
+The `input` is the higher-level open JavaScript object provided by the IoT Flow framework and it represents the downlink payload directly.
 
 The function must return an object containg 2 fields:
 
